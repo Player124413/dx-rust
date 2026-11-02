@@ -57,7 +57,7 @@ impl Default for MobileRender {
 }
 
 #[derive(Component)]
-struct MobileBlit;
+pub struct MobileBlit;
 
 fn bounds(quality: u8, pixels: f32) -> (f32, f32, f32) {
     let (budget, max) = match quality { 1 => (640.0 * 360.0, 0.55), 2 => (960.0 * 540.0, 0.8), 3 => (1920.0 * 1080.0, 1.0), _ => (1280.0 * 720.0, 0.85) };
