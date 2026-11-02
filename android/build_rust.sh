@@ -10,7 +10,7 @@ OUT=android/app/src/main/jniLibs
 ABIS="${ABIS:-arm64-v8a armeabi-v7a x86_64}"
 targets=()
 for abi in $ABIS; do targets+=(-t "$abi"); done
-cargo ndk "${targets[@]}" -o "$OUT" build --profile release --lib -p dxview --message-format=short
+cargo ndk "${targets[@]}" -o "$OUT" build --profile release --lib -p dxview
 # Bevy/cpal use the shared C++ runtime on Android; package the NDK's matching libc++_shared.so.
 HOST="$(uname -s | tr '[:upper:]' '[:lower:]')-x86_64"
 SYS="$NDK/toolchains/llvm/prebuilt/$HOST/sysroot/usr/lib"

@@ -13,12 +13,18 @@ one-to-one:
 - conversations, infolinks, computers, keypads;
 - saves and the original menus and HUD.
 
-It runs as a native Windows program and on Steam Deck / Linux, with no old engine underneath.
+It runs as a native Windows program, on Steam Deck / Linux, and on Android, with no old engine underneath.
 
 ![DX RUST: the training course, playing as the female JC from the Lay D Denton Project](docs/screenshot-training.png)
 
 > **You need your own copy of Deus Ex** (Game of the Year Edition from Steam or GOG). No game files are included
 > here or in the releases.
+
+## Android
+A native Android port lives in [`android/`](android/README.md): a launcher imports your own game folder, touch
+controls are editable on-device, rendering adapts to a 60 FPS target, and textures are cached as ETC2 when the GPU
+supports it. CI builds a sideloadable APK from this branch (GitHub Actions → **Android** → `dx-rust-android-apk`).
+It is still a device-testing preview: bring your own data, and expect per-phone tuning.
 
 ## Features
 - **The whole game.** Every map of every mission (the game has 83 map files), every mission script, scripted set pieces and both training courses. Travel
