@@ -104,25 +104,39 @@ fn rgb_block(px: &[[u8; 3]; 16]) -> [u8; 8] {
 
 fn alpha_block(a: &[u8; 16]) -> [u8; 8] {
     let avg = a.iter().map(|v| *v as i32).sum::<i32>() / 16;
-    let bases = [0, 128, 255, avg];
+    let min = *a.iter().min().unwrap() as i32;
+    let max = *a.iter().max().unwrap() as i32;
+    let range = max - min;
+    let bases = [avg, min, max, (avg - range / 4).clamp(0, 255), (avg + range / 4).clamp(0, 255)];
     let mut best = u64::MAX; let mut best_word = 0u64;
-    for base in bases { for table in 0..16 { for mult in 1..16 {
-        let mut err = 0u64; let mut ids = [0u8; 16];
-        for y in 0..4 { for x in 0..4 {
-            let v = a[y * 4 + x] as i32; let mut pe = u64::MAX;
-            for (i, m) in ALPHA_MODS[table].iter().enumerate() {
-                let d = v - (base + mult * m).clamp(0, 255); let e = (d * d) as u64;
-                if e < pe { pe = e; ids[y * 4 + x] = i as u8; }
+    for table in 0..16 {
+        let mods = ALPHA_MODS[table];
+        let span = mods.iter().max().unwrap() - mods.iter().min().unwrap();
+        let est = if range == 0 { 1 } else { ((range + span / 2) / span).clamp(1, 15) };
+        let mults = [1, (est - 1).max(1), est, (est + 1).min(15), 15];
+        for base in bases { for mult in mults {
+            let mut err = 0u64; let mut ids = [0u8; 16];
+            for i in 0..16 {
+                let v = a[i] as i32; let mut pe = u64::MAX;
+                for (k, m) in mods.iter().enumerate() {
+                    let d = v - (base + mult * m).clamp(0, 255); let e = (d * d) as u64;
+                    if e < pe { pe = e; ids[i] = k as u8; }
+                }
+                err += pe;
             }
-            err += pe;
+            if err < best {
+                best = err;
+                let mut word = ((base as u64) << 56) | ((mult as u64) << 52) | ((table as u64) << 48);
+                // EAC indices, like ETC colour indices, are column-major.
+                for x in 0..4 { for y in 0..4 {
+                    let i = x * 4 + y;
+                    word |= (ids[y * 4 + x] as u64) << (45 - 3 * i);
+                }}
+                best_word = word;
+                if err == 0 { return best_word.to_be_bytes(); }
+            }
         }}
-        if err < best {
-            best = err;
-            let mut word = ((base as u64) << 56) | ((mult as u64) << 52) | ((table as u64) << 48);
-            for y in 0..4 { for x in 0..4 { word = (word << 3) | ids[y * 4 + x] as u64; } }
-            best_word = word;
-        }
-    }}}
+    }
     best_word.to_be_bytes()
 }
 
@@ -161,7 +175,7 @@ mod tests {
     #[test]
     fn independent_decoder_accepts_rgb_and_alpha() {
         let (w, h) = (32, 32); let mut src = vec![0u8; w * h * 4];
-        for y in 0..h { for x in 0..w { let i = (y * w + x) * 4; src[i] = (x * 8) as u8; src[i + 1] = (y * 8) as u8; src[i + 2] = ((x + y) * 4) as u8; src[i + 3] = if (x / 4 + y / 4) % 2 == 0 { 255 } else { 0 }; }}
+        for y in 0..h { for x in 0..w { let i = (y * w + x) * 4; src[i] = (x * 8) as u8; src[i + 1] = (y * 8) as u8; src[i + 2] = ((x + y) * 4) as u8; src[i + 3] = ((x * 5 + y * 9) % 256) as u8; }}
         let rgb = encode(&src, w as u32, h as u32, false); let mut dec = vec![0u32; w * h];
         texture2ddecoder::decode_etc2_rgb(&rgb, w, h, &mut dec).unwrap();
         assert!(psnr(&src, &dec, false) > 30.0, "RGB PSNR {}", psnr(&src, &dec, false));
