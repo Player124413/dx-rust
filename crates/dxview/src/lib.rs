@@ -564,10 +564,9 @@ pub fn main() {
     dx_level::set_bc1_supported(std::env::var_os("DXVIEW_NO_BC1").is_none());
     let args: Vec<String> = std::env::args().collect();
     // The game folder: the first argument, else the launcher's choice (launcher.txt beside the exe), else the default.
-    let root = crate::platform::android_game_root().map(|p| p.display().to_string()).or_else(|| args
-        .get(1)
-        .filter(|a| !a.starts_with("--"))
-        .cloned()
+    let root = crate::platform::android_game_root()
+        .map(|p| p.display().to_string())
+        .or_else(|| args.get(1).filter(|a| !a.starts_with("--")).cloned())
         .or_else(|| {
             let dir = crate::platform::data_dir();
             std::fs::read_to_string(dir.join("launcher.txt"))
@@ -578,7 +577,7 @@ pub fn main() {
         })
         // Else the usual Steam / GOG / Heroic places (Steam Deck included).
         .or_else(|| unreal_pkg::gamedir::detect().map(|p| p.display().to_string()))
-        .unwrap_or_else(|| r"C:\Games\Deus Ex".to_string()));
+        .unwrap_or_else(|| r"C:\Games\Deus Ex".to_string());
     // Mods (unreal_pkg::mods): the launcher's Mods page writes Mod.<id>= / ModOn.<id>= lines in launcher.txt (Lay D
     // Denton's older LDDPPath= still counts). Overlays (Lay D Denton) are laid over the game folder, addons searched
     // after it, HD texture packs used texture by texture. DXVIEW_MOD (';'-separated folders) adds overlays for tests.

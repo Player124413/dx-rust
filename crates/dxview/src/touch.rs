@@ -105,8 +105,8 @@ pub fn short_action(a: &str) -> String {
         "Use / pick up" => "USE", "Reload" => "RLD", "Inventory screen" => "INV", "Goals / notes screen" => "GOALS",
         "Menu" => "MENU", "Edit controls" => "EDIT", "Augmentation F12 (light)" => "LIGHT",
         s if s.starts_with("Augmentation ") => s.trim_start_matches("Augmentation ").split(' ').next().unwrap_or("AUG"),
-        s => s.split(' ').next().unwrap_or("ACT").to_uppercase(),
-    }.to_string()
+        s => s.split(' ').next().unwrap_or("ACT"),
+    }.to_uppercase()
 }
 fn action_choices() -> Vec<String> {
     let mut v: Vec<String> = crate::keybinds::ACTIONS.iter().map(|a| a.0.to_string()).collect();
@@ -241,7 +241,8 @@ pub fn input_system(
         }
     }
     state.ui_left = state.fingers.values().any(|t| matches!(t.owner, Owner::Ui));
-    for t in state.fingers.values() {
+    let tracks: Vec<Track> = state.fingers.values().cloned().collect();
+    for t in &tracks {
         match t.owner {
             Owner::Button(id) => {
                 state.pressed.push(id);
