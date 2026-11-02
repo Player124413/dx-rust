@@ -22,7 +22,7 @@ pub fn data_dir() -> PathBuf {
         #[cfg(target_os = "android")]
         {
             if let Some(app) = bevy::android::ANDROID_APP.get() {
-                if let Some(p) = app.internal_data_path() { return p; }
+                if let Some(p) = app.internal_data_path() { return PathBuf::from(p); }
             }
             // A missing internal path is a broken host; do not silently write into the process CWD.
             panic!("Android did not provide an internal data directory");

@@ -160,7 +160,7 @@ pub fn adaptive_system(
         if size != state.size {
             state.scale = next; state.size = size;
             let img = target_image(&mut images, size);
-            if let Some(old) = state.image.replace(img.clone()) { images.remove(old); }
+            if let Some(old) = state.image.replace(img.clone()) { images.remove(old.id()); }
             for mut node in &mut blits { node.image = img.clone(); }
             retarget(&state, &mut cameras);
         }

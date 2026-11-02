@@ -364,8 +364,8 @@ pub fn draw_system(
     visuals.buttons.retain(|id, (e, child)| { if live.contains(id) { true } else { commands.entity(*e).despawn(); let _ = child; false } });
     for b in &layout.buttons {
         let (e, label) = *visuals.buttons.entry(b.id).or_insert_with(|| {
-            let e = commands.spawn((Node { position_type: PositionType::Absolute, justify_content: JustifyContent::Center, align_items: AlignItems::Center, ..default() },
-                BackgroundColor(Color::NONE), BorderColor::all(Color::NONE), BorderRadius::MAX, GlobalZIndex(40), Pickable::IGNORE)).id();
+            let e = commands.spawn((Node { position_type: PositionType::Absolute, justify_content: JustifyContent::Center, align_items: AlignItems::Center, border_radius: BorderRadius::MAX, ..default() },
+                BackgroundColor(Color::NONE), BorderColor::all(Color::NONE), GlobalZIndex(40), Pickable::IGNORE)).id();
             let t = commands.spawn((Text::new(b.label()), TextFont { font_size: bevy::text::FontSize::Px(14.0), ..default() }, TextColor(Color::WHITE), Pickable::IGNORE)).id();
             commands.entity(e).add_child(t); (e, t)
         });
@@ -378,8 +378,8 @@ pub fn draw_system(
     }
     // Stick base + knob.
     let (stick, knob) = *visuals.stick.get_or_insert_with(|| {
-        let s = commands.spawn((Node { position_type: PositionType::Absolute, ..default() }, BackgroundColor(Color::NONE), BorderRadius::MAX, GlobalZIndex(39), Pickable::IGNORE)).id();
-        let k = commands.spawn((Node { position_type: PositionType::Absolute, ..default() }, BackgroundColor(Color::NONE), BorderRadius::MAX, GlobalZIndex(41), Pickable::IGNORE)).id();
+        let s = commands.spawn((Node { position_type: PositionType::Absolute, border_radius: BorderRadius::MAX, ..default() }, BackgroundColor(Color::NONE), GlobalZIndex(39), Pickable::IGNORE)).id();
+        let k = commands.spawn((Node { position_type: PositionType::Absolute, border_radius: BorderRadius::MAX, ..default() }, BackgroundColor(Color::NONE), GlobalZIndex(41), Pickable::IGNORE)).id();
         (s, k)
     });
     let sr = base * layout.stick_r; let sc = center(rect, layout.stick_x, layout.stick_y);
