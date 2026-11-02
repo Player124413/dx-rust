@@ -1,10 +1,10 @@
 [1m[92m   Compiling[0m proc-macro2 v1.0.107
 [1m[92m   Compiling[0m unicode-ident v1.0.26
 [1m[92m   Compiling[0m quote v1.0.47
-[1m[92m   Compiling[0m libc v0.2.190
 [1m[92m   Compiling[0m serde_core v1.0.229
-[1m[92m   Compiling[0m serde v1.0.229
+[1m[92m   Compiling[0m libc v0.2.190
 [1m[92m   Compiling[0m paste v1.0.15
+[1m[92m   Compiling[0m serde v1.0.229
 [1m[92m   Compiling[0m glam v0.32.1
 [1m[92m   Compiling[0m syn v3.0.6
 [1m[92m   Compiling[0m memmap2 v0.9.11
@@ -32,12 +32,12 @@
    [1m[94m= [0m[1mhelp[0m: maybe it is overwritten before being read?
 
 [1m[33mwarning[0m: `dx-level` (lib test) generated 2 warnings
-[1m[92m    Finished[0m `test` profile [unoptimized + debuginfo] target(s) in 5.62s
+[1m[92m    Finished[0m `test` profile [unoptimized + debuginfo] target(s) in 8.31s
 [1m[92m     Running[0m unittests src/lib.rs (target/debug/deps/dx_level-fa2e51390934b019)
 
 running 2 tests
 test etc2::tests::solid_and_non_multiple_of_four ... ok
 test etc2::tests::independent_decoder_accepts_rgb_and_alpha ... ok
 
-test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.07s
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 6 filtered out; finished in 0.10s
 
