@@ -1,98 +1,98 @@
     Building arm64-v8a (aarch64-linux-android)
    Compiling proc-macro2 v1.0.107
-   Compiling unicode-ident v1.0.26
    Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.26
    Compiling serde_core v1.0.229
    Compiling cfg-if v1.0.5
-   Compiling autocfg v1.5.1
    Compiling libm v0.2.16
+   Compiling autocfg v1.5.1
    Compiling log v0.4.34
    Compiling libc v0.2.190
    Compiling syn v3.0.6
    Compiling syn v2.0.119
    Compiling num-traits v0.2.19
-   Compiling hashbrown v0.17.1
-   Compiling equivalent v1.0.2
    Compiling winnow v1.0.4
+   Compiling equivalent v1.0.2
+   Compiling hashbrown v0.17.1
    Compiling indexmap v2.14.2
-   Compiling toml_datetime v1.1.2+spec-1.1.0
    Compiling toml_parser v1.1.5+spec-1.1.0
+   Compiling toml_datetime v1.1.2+spec-1.1.0
+   Compiling toml_edit v0.25.17+spec-1.1.0
    Compiling thiserror v2.0.21
    Compiling serde v1.0.229
-   Compiling toml_edit v0.25.17+spec-1.1.0
-   Compiling foldhash v0.2.0
-   Compiling pin-project-lite v0.2.17
-   Compiling crossbeam-utils v0.8.23
-   Compiling cfg_aliases v0.2.2
-   Compiling smallvec v1.16.2
    Compiling bytemuck_derive v1.12.1
    Compiling thiserror-impl v2.0.21
    Compiling serde_derive v1.0.229
+   Compiling pin-project-lite v0.2.17
+   Compiling foldhash v0.2.0
+   Compiling crossbeam-utils v0.8.23
+   Compiling cfg_aliases v0.2.2
    Compiling bytemuck v1.25.2
-   Compiling allocator-api2 v0.2.21
-   Compiling parking v2.2.1
+   Compiling smallvec v1.16.2
    Compiling bitflags v2.13.2
-   Compiling arrayvec v0.7.8
+   Compiling allocator-api2 v0.2.21
    Compiling hashbrown v0.16.1
+   Compiling arrayvec v0.7.8
+   Compiling parking v2.2.1
    Compiling bevy_macro_utils v0.19.1
-   Compiling futures-core v0.3.34
    Compiling raw-window-handle v0.6.2
+   Compiling futures-core v0.3.34
    Compiling encase_derive_impl v0.12.1
    Compiling typewit v1.15.2
    Compiling const_panic v0.2.17
-   Compiling rand_core v0.10.1
    Compiling fastrand v2.5.0
    Compiling futures-io v0.3.34
+   Compiling rand_core v0.10.1
    Compiling rand v0.10.3
    Compiling encase_derive v0.12.1
    Compiling event-listener v5.4.2
    Compiling approx v0.5.1
-   Compiling encase v0.12.1
    Compiling event-listener-strategy v0.5.4
+   Compiling encase v0.12.1
    Compiling futures-lite v2.6.1
    Compiling concurrent-queue v2.5.0
+   Compiling foldhash v0.1.5
    Compiling getrandom v0.4.3
    Compiling memchr v2.8.3
-   Compiling foldhash v0.1.5
-   Compiling glam v0.32.1
    Compiling hashbrown v0.15.5
+   Compiling glam v0.32.1
    Compiling wgpu-types v29.0.4
    Compiling once_cell v1.21.4
    Compiling uuid v1.27.0
    Compiling async-channel v2.5.0
-   Compiling unicode-segmentation v1.13.3
    Compiling typeid v1.0.3
+   Compiling unicode-segmentation v1.13.3
    Compiling convert_case v0.10.0
    Compiling jni-sys-macros v0.4.1
    Compiling spin v0.10.1
    Compiling unicode-xid v0.2.6
-   Compiling bevy_platform v0.19.1
    Compiling derive_more-impl v2.1.1
    Compiling jni-sys v0.4.1
+   Compiling bevy_platform v0.19.1
    Compiling smol_str v0.2.2
    Compiling thread_local v1.1.10
    Compiling rustversion v1.0.23
-   Compiling jni-sys v0.3.1
    Compiling erased-serde v0.4.10
-   Compiling downcast-rs v2.0.2
-   Compiling fixedbitset v0.5.7
+   Compiling jni-sys v0.3.1
    Compiling derive_more v2.1.1
    Compiling disqualified v1.1.0
+   Compiling fixedbitset v0.5.7
+   Compiling downcast-rs v2.0.2
    Compiling petgraph v0.8.3
    Compiling bevy_utils v0.19.1
    Compiling jobserver v0.1.35
    Compiling bevy_reflect_derive v0.19.1
-   Compiling assert_type_match v0.1.1
    Compiling variadics_please v1.1.0
+   Compiling assert_type_match v0.1.1
    Compiling inventory v0.3.25
    Compiling shlex v2.0.1
    Compiling bevy_ptr v0.19.1
-   Compiling slab v0.4.12
    Compiling find-msvc-tools v0.1.14
+   Compiling slab v0.4.12
    Compiling cc v1.6.0
+   Compiling async-task v4.7.1
    Compiling atomic-waker v1.1.2
    Compiling version_check v0.9.5
-   Compiling async-task v4.7.1
    Compiling slotmap v1.1.1
    Compiling bevy_ecs_macro_logic v0.19.1
    Compiling bevy_reflect v0.19.1
@@ -103,8 +103,8 @@
    Compiling nonmax v0.5.5
    Compiling bevy_tasks v0.19.1
    Compiling bevy_ecs_macros v0.19.1
-   Compiling proc-macro-crate v3.5.0
    Compiling thiserror-impl v1.0.69
+   Compiling proc-macro-crate v3.5.0
    Compiling bumpalo v3.20.3
    Compiling simdutf8 v0.1.5
    Compiling num_enum_derive v0.7.6
@@ -119,8 +119,8 @@
    Compiling semver v1.0.28
    Compiling zerocopy v0.8.62
    Compiling rustc_version v0.4.1
-   Compiling tracing-attributes v0.1.31
    Compiling zerocopy-derive v0.8.62
+   Compiling tracing-attributes v0.1.31
    Compiling same-file v1.0.6
    Compiling walkdir v2.5.0
    Compiling tracing v0.1.44
@@ -131,10 +131,10 @@
    Compiling jni v0.22.4
    Compiling half v2.7.1
    Compiling android-activity v0.6.1
-   Compiling bevy_app v0.19.1
    Compiling ndk v0.9.0
-   Compiling rustix v1.1.5
+   Compiling bevy_app v0.19.1
    Compiling android-properties v0.2.2
+   Compiling rustix v1.1.5
    Compiling itertools v0.14.0
    Compiling rand_distr v0.6.0
    Compiling crossbeam-channel v0.5.17
@@ -150,22 +150,22 @@
    Compiling sysinfo v0.38.4
    Compiling async-lock v3.4.2
    Compiling futures-macro v0.3.34
-   Compiling const-fnv1a-hash v1.1.0
-   Compiling constant_time_eq v0.4.2
    Compiling futures-task v0.3.34
-   Compiling futures-util v0.3.34
+   Compiling constant_time_eq v0.4.2
+   Compiling const-fnv1a-hash v1.1.0
    Compiling bevy_diagnostic v0.19.1
+   Compiling futures-util v0.3.34
    Compiling async-fs v2.2.0
    Compiling bevy_android v0.19.1
    Compiling ron v0.12.2
    Compiling async-broadcast v0.7.2
    Compiling stackfuture v0.3.1
    Compiling bevy_asset_macros v0.19.1
-   Compiling atomicow v1.2.0
    Compiling simd-adler32 v0.3.10
+   Compiling atomicow v1.2.0
+   Compiling lazy_static v1.5.1
    Compiling adler2 v2.0.1
    Compiling bevy_asset v0.19.1
-   Compiling lazy_static v1.5.1
    Compiling crc32fast v1.5.2
    Compiling aho-corasick v1.1.5
    Compiling regex-syntax v0.8.11
@@ -175,11 +175,11 @@
    Compiling miniz_oxide v0.8.9
    Compiling fdeflate v0.3.7
    Compiling synstructure v0.14.0
-   Compiling pxfm v0.1.30
    Compiling stable_deref_trait v1.2.1
    Compiling const_soft_float v0.1.4
-   Compiling constgebra v0.1.4
+   Compiling pxfm v0.1.30
    Compiling moxcms v0.8.1
+   Compiling constgebra v0.1.4
    Compiling png v0.18.1
    Compiling bevy_color v0.19.1
    Compiling euclid v0.22.14
@@ -205,18 +205,18 @@
    Compiling matchers v0.2.0
    Compiling sharded-slab v0.1.7
    Compiling tracing-log v0.2.0
-   Compiling nu-ansi-term v0.50.3
-   Compiling termcolor v1.4.1
    Compiling unicode-width v0.2.2
+   Compiling termcolor v1.4.1
+   Compiling nu-ansi-term v0.50.3
    Compiling tracing-subscriber v0.3.23
    Compiling bevy_window v0.19.1
-   Compiling zerovec-derive v0.11.6
    Compiling naga v29.0.4
+   Compiling zerovec-derive v0.11.6
+   Compiling android_log-sys v0.3.2
    Compiling bit-vec v0.9.1
    Compiling scopeguard v1.2.0
-   Compiling android_log-sys v0.3.2
-   Compiling bevy_log v0.19.1
    Compiling bit-set v0.9.1
+   Compiling bevy_log v0.19.1
    Compiling zerovec v0.11.8
    Compiling bevy_camera v0.19.1
    Compiling codespan-reporting v0.13.1
@@ -229,8 +229,8 @@
    Compiling tinystr v0.8.4
    Compiling pkg-config v0.3.34
    Compiling parking_lot_core v0.9.12
-   Compiling litemap v0.8.3
    Compiling ash v0.38.0+1.3.281
+   Compiling litemap v0.8.3
    Compiling icu_locale_core v2.3.0
    Compiling wayland-sys v0.31.11
    Compiling potential_utf v0.1.6
@@ -243,30 +243,30 @@
    Compiling gpu-descriptor-types v0.2.0
    Compiling wgpu-hal v29.0.4
    Compiling ordered-float v5.5.0
-   Compiling presser v0.3.1
    Compiling utf8_iter v1.0.4
+   Compiling presser v0.3.1
    Compiling icu_collections v2.3.0
    Compiling gpu-descriptor v0.3.2
    Compiling parking_lot v0.12.5
    Compiling codespan-reporting v0.12.0
    Compiling regex v1.13.1
+   Compiling gpu-allocator v0.28.0
    Compiling font-types v0.11.3
    Compiling android_system_properties v0.1.6
    Compiling glow v0.17.0
-   Compiling gpu-allocator v0.28.0
    Compiling icu_locale_fallback_data v2.3.0
-   Compiling data-encoding v2.11.1
-   Compiling renderdoc-sys v1.1.0
    Compiling profiling v1.0.18
+   Compiling renderdoc-sys v1.1.0
+   Compiling data-encoding v2.11.1
    Compiling icu_properties_data v2.3.0
    Compiling naga_oil v0.22.0
    Compiling read-fonts v0.39.2
    Compiling wgpu-core v29.0.4
    Compiling memmap2 v0.9.11
-   Compiling static_assertions v1.1.0
-   Compiling litrs v1.0.0
-   Compiling icu_segmenter_data v2.3.0
    Compiling icu_normalizer_data v2.3.0
+   Compiling static_assertions v1.1.0
+   Compiling icu_segmenter_data v2.3.0
+   Compiling litrs v1.0.0
    Compiling document-features v0.2.12
    Compiling wgpu-core-deps-windows-linux-android v29.0.4
    Compiling bevy_shader v0.19.1
@@ -284,8 +284,8 @@
    Compiling linebender_resource_handle v0.1.1
    Compiling fontique v0.9.0
    Compiling harfrust v0.6.2
-   Compiling icu_normalizer v2.3.0
    Compiling icu_segmenter v2.3.0
+   Compiling icu_normalizer v2.3.0
    Compiling skrifa v0.44.0
    Compiling parley_data v0.9.0
    Compiling bevy_light v0.19.1
@@ -293,23 +293,23 @@
    Compiling bevy_picking v0.19.1
    Compiling offset-allocator v0.2.0
    Compiling bevy_render_macros v0.19.1
+   Compiling byteorder v1.5.0
+   Compiling zeno v0.3.3
+   Compiling zmij v1.0.23
    Compiling weak-table v0.3.2
    Compiling yazi v0.2.1
-   Compiling byteorder v1.5.0
-   Compiling zmij v1.0.23
-   Compiling zeno v0.3.3
-   Compiling swash v0.2.10
    Compiling bevy_render v0.19.1
+   Compiling swash v0.2.10
    Compiling parley v0.9.0
    Compiling bevy_clipboard v0.19.1
    Compiling sys-locale v0.3.2
    Compiling serde_json v1.0.151
    Compiling bevy_text v0.19.1
    Compiling accesskit v0.24.1
-   Compiling radsort v0.1.1
    Compiling bevy_core_pipeline v0.19.1
-   Compiling inflections v1.1.1
+   Compiling radsort v0.1.1
    Compiling itoa v1.0.18
+   Compiling inflections v1.1.1
    Compiling gltf-derive v1.4.1
    Compiling bevy_sprite v0.19.1
    Compiling gltf-json v1.4.1
@@ -318,25 +318,25 @@
    Compiling bevy_animation_macros v0.19.1
    Compiling winit v0.30.13
    Compiling grid v1.0.1
-   Compiling bevy_animation v0.19.1
    Compiling taffy v0.10.1
+   Compiling bevy_animation v0.19.1
    Compiling gltf v1.4.1
    Compiling bevy_world_serialization v0.19.1
-   Compiling percent-encoding v2.3.2
-   Compiling dpi v0.1.2
+   Compiling base64 v0.22.1
    Compiling cursor-icon v1.2.0
    Compiling crossbeam-epoch v0.9.21
-   Compiling base64 v0.22.1
+   Compiling dpi v0.1.2
+   Compiling percent-encoding v2.3.2
    Compiling gilrs v0.11.2
    Compiling bevy_gltf v0.19.1
    Compiling bevy_ui v0.19.1
    Compiling bevy_sprite_render v0.19.1
    Compiling encoding_rs v0.8.42
    Compiling gilrs-core v0.6.8
-   Compiling vec_map v0.8.2
    Compiling fnv v1.0.7
    Compiling crossbeam-deque v0.8.8
    Compiling paste v1.0.15
+   Compiling vec_map v0.8.2
    Compiling accesskit_winit v0.32.2
    Compiling bevy_pbr v0.19.1
    Compiling oboe-sys v0.6.1
@@ -344,10 +344,10 @@
    Compiling bevy_state_macros v0.19.1
    Compiling safe_arch v0.7.4
    Compiling num-derive v0.4.2
+   Compiling bitflags v1.3.2
+   Compiling heapless v0.8.0
    Compiling multiversion_no_op v1.0.0
    Compiling rayon-core v1.13.0
-   Compiling heapless v0.8.0
-   Compiling bitflags v1.3.2
    Compiling symphonia-core v0.5.5
    Compiling wide v0.7.33
    Compiling bevy_state v0.19.1
@@ -357,48 +357,49 @@
    Compiling bevy_ui_render v0.19.1
    Compiling bevy_gilrs v0.19.1
    Compiling bevy_ui_widgets v0.19.1
-   Compiling bevy_post_process v0.19.1
    Compiling bevy_anti_alias v0.19.1
+   Compiling bevy_post_process v0.19.1
    Compiling hash32 v0.3.1
    Compiling ndk-sys v0.5.0+25.2.9519653
    Compiling num-complex v0.4.6
    Compiling cesu8 v1.1.0
    Compiling jni v0.21.1
+   Compiling bevy_internal v0.19.1
    Compiling simba v0.9.1
    Compiling ndk v0.8.0
-   Compiling bevy_internal v0.19.1
    Compiling symphonia-metadata v0.5.5
    Compiling proc-macro-error-attr3 v3.1.1
-   Compiling cpal v0.15.3
    Compiling arbitrary-chunks v0.4.1
-   Compiling robust v1.2.0
-   Compiling oplon v1.0.0
    Compiling sidera v1.1.1
    Compiling partition v0.1.2
-   Compiling rdst v0.20.14
-   Compiling xmrs v0.15.2
-   Compiling glamx v0.2.0
+   Compiling oplon v1.0.0
+   Compiling robust v1.2.0
+   Compiling cpal v0.15.3
    Compiling spade v2.15.1
+   Compiling xmrs v0.15.2
+   Compiling rdst v0.20.14
    Compiling proc-macro-error3 v3.1.1
    Compiling symphonia-bundle-mp3 v0.5.5
-   Compiling rayon v1.12.0
-   Compiling bevy v0.19.1
    Compiling oboe v0.6.1
+   Compiling rayon v1.12.0
    Compiling rstar v0.12.2
+   Compiling glamx v0.2.0
+   Compiling bevy v0.19.1
    Compiling glam_matrix_extras v0.3.0
    Compiling ena v0.14.4
    Compiling dasp_sample v0.11.0
-   Compiling xmrsplayer v0.15.0
-   Compiling bevy_heavy v0.5.0
    Compiling parry3d v0.27.0
+   Compiling bevy_heavy v0.5.0
    Compiling bevy_transform_interpolation v0.5.0
+   Compiling xmrsplayer v0.15.0
    Compiling symphonia v0.5.5
    Compiling avian_derive v0.2.3
    Compiling obvhs v0.3.3
    Compiling unreal-pkg v0.1.0 (/home/runner/work/dx-rust/dx-rust/crates/unreal-pkg)
    Compiling itertools v0.15.0
-   Compiling dxview v0.1.0 (/home/runner/work/dx-rust/dx-rust/crates/dxview)
    Compiling bcdec_rs v0.2.1
+   Compiling dxview v0.1.0 (/home/runner/work/dx-rust/dx-rust/crates/dxview)
+   Compiling avian3d v0.7.0
    Compiling dx-level v0.1.0 (/home/runner/work/dx-rust/dx-rust/crates/dx-level)
 warning: value assigned to `err` is never read
   --> crates/dx-level/src/etc2.rs:56:52
@@ -417,7 +418,6 @@ warning: value assigned to `err` is never read
    |
    = help: maybe it is overwritten before being read?
 
-   Compiling avian3d v0.7.0
    Compiling imsim-audio v0.1.0 (/home/runner/work/dx-rust/dx-rust/crates/imsim-audio)
    Compiling imsim-core v0.1.0 (/home/runner/work/dx-rust/dx-rust/crates/imsim-core)
 warning: `dx-level` (lib) generated 2 warnings
@@ -551,25 +551,6 @@ warning: variable does not need to be mutable
     |     |
     |     help: remove this `mut`
 
-warning: type `MobileBlit` is more private than the item `adaptive_system`
-   --> crates/dxview/src/mobile.rs:132:1
-    |
-132 | / pub fn adaptive_system(
-133 | |     time: Res<Time<Real>>,
-134 | |     mut state: ResMut<MobileRender>,
-135 | |     windows: Query<&Window, With<bevy::window::PrimaryWindow>>,
-...   |
-139 | |     lifecycle: Res<crate::platform::Lifecycle>,
-140 | | ) {
-    | |_^ function `adaptive_system` is reachable at visibility `pub(crate)`
-    |
-note: but type `MobileBlit` is only usable at visibility `pub(self)`
-   --> crates/dxview/src/mobile.rs:60:1
-    |
- 60 | struct MobileBlit;
-    | ^^^^^^^^^^^^^^^^^
-    = note: `#[warn(private_interfaces)]` on by default
-
 warning: type `Visuals` is more private than the item `editor_system`
    --> crates/dxview/src/touch.rs:273:1
     |
@@ -587,6 +568,7 @@ note: but type `Visuals` is only usable at visibility `pub(self)`
     |
 140 | struct Visuals {
     | ^^^^^^^^^^^^^^
+    = note: `#[warn(private_interfaces)]` on by default
 
 warning: type `Visuals` is more private than the item `draw_system`
    --> crates/dxview/src/touch.rs:346:1
@@ -1114,7 +1096,7 @@ warning: field `generation` is never read
 143 |     generation: u64,
     |     ^^^^^^^^^^
 
-error: type `MobileBlit` is private
+error: type `Visuals` is private
     --> crates/dxview/src/lib.rs:1145:5
      |
 1145 | /     app.init_resource::<platform::Lifecycle>()
@@ -1126,8 +1108,8 @@ error: type `MobileBlit` is private
 1152 | |         .add_systems(Update, (mobile::adaptive_system, mobile::overlay_system, touch::draw_system))
      | |___________________________________________________________________________________________________^ private type
 
-warning: `dxview` (lib) generated 80 warnings
-error: could not compile `dxview` (lib) due to 1 previous error; 80 warnings emitted
+warning: `dxview` (lib) generated 79 warnings
+error: could not compile `dxview` (lib) due to 1 previous error; 79 warnings emitted
 note: If the build failed due to a missing target, you can run this command:
 note: 
 note:     rustup target install aarch64-linux-android
