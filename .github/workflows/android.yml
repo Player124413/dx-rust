@@ -11,7 +11,7 @@ on:
       - '.github/workflows/android.yml'
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -47,6 +47,16 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - name: Install cargo-ndk
         run: cargo install cargo-ndk --version 4.1.2 --locked
+      - name: Resolve and persist Cargo.lock
+        run: |
+          cargo metadata --format-version 1 >/dev/null
+          if ! git diff --quiet -- Cargo.lock; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add Cargo.lock
+            git commit -m "Update Cargo.lock for Android dependencies [skip ci]"
+            git push origin HEAD:arena/c6e3e0a1-dx-rust
+          fi
       - name: Verify Cargo.lock
         run: cargo metadata --format-version 1 --locked >/dev/null
 
