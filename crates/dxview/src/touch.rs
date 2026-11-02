@@ -137,7 +137,7 @@ impl TouchState {
 }
 
 #[derive(Resource, Default)]
-struct Visuals {
+pub struct Visuals {
     buttons: HashMap<u32, (Entity, Entity)>,
     stick: Option<(Entity, Entity)>,
     editor_root: Option<Entity>,
