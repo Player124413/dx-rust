@@ -71,6 +71,8 @@ jobs:
           cargo test -p dx-level --lib etc2 2>&1 | tee etc2-test.log
 
       - name: Build Rust libraries
+        env:
+          ABIS: arm64-v8a
         run: |
           set -o pipefail
           bash android/build_rust.sh 2>&1 | tee rust-build.log
@@ -91,7 +93,7 @@ jobs:
           if [ -n "$(git status --porcelain ci-logs)" ]; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add ci-logs
+            git add -f ci-logs
             git commit -m "CI failure logs [skip ci]"
             git push origin HEAD:arena/c6e3e0a1-dx-rust
           fi
@@ -100,7 +102,7 @@ jobs:
         run: |
           for f in lock.log etc2-test.log rust-build.log gradle-build.log; do
             [ -f "$f" ] || continue
-            grep -E '^error|error\[|FAILURE:|What went wrong|Caused by:|FAILED|panicked|assertion|PSNR' "$f" | head -80 | while IFS= read -r line; do
+            grep -E '^error|error\[|error:|FAILURE:|What went wrong|Caused by:|FAILED|panicked|assertion|PSNR' "$f" | head -80 | while IFS= read -r line; do
               echo "::error file=$f::$line"
             done
             if [ "$f" = "rust-build.log" ]; then
