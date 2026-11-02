@@ -127,11 +127,11 @@ fn alpha_block(a: &[u8; 16]) -> [u8; 8] {
             if err < best {
                 best = err;
                 let mut word = ((base as u64) << 56) | ((mult as u64) << 52) | ((table as u64) << 48);
-                // EAC indices, like ETC colour indices, are column-major.
-                for x in 0..4 { for y in 0..4 {
-                    let i = x * 4 + y;
-                    word |= (ids[y * 4 + x] as u64) << (45 - 3 * i);
-                }}
+                // EAC indices are consumed LSB-first in the decoder's reverse write order.
+                const REV: [usize; 16] = [15, 11, 7, 3, 14, 10, 6, 2, 13, 9, 5, 1, 12, 8, 4, 0];
+                for (i, &px) in REV.iter().enumerate() {
+                    word |= (ids[px] as u64) << (3 * i);
+                }
                 best_word = word;
                 if err == 0 { return best_word.to_be_bytes(); }
             }
@@ -166,8 +166,8 @@ mod tests {
     fn psnr(src: &[u8], dst: &[u32], alpha: bool) -> f64 {
         let mut se = 0f64; let mut n = 0;
         for (p, d) in src.chunks_exact(4).zip(dst) {
-            let px = d.to_le_bytes();
-            for c in 0..3 { let e = p[c] as f64 - px[c] as f64; se += e * e; n += 1; }
+            let px = d.to_le_bytes(); // BGRA
+            for c in 0..3 { let e = p[c] as f64 - px[2 - c] as f64; se += e * e; n += 1; }
             if alpha { let e = p[3] as f64 - px[3] as f64; se += e * e; n += 1; }
         }
         10.0 * (255.0 * 255.0 / (se / n as f64).max(1e-9)).log10()
@@ -188,6 +188,6 @@ mod tests {
         let src = [200u8, 30, 40, 255].repeat(5 * 3);
         let enc = encode(&src, 5, 3, false); assert_eq!(enc.len(), encoded_len(5, 3, false));
         let mut dec = vec![0u32; 15]; texture2ddecoder::decode_etc2_rgb(&enc, 5, 3, &mut dec).unwrap();
-        assert!(dec.iter().all(|p| { let b = p.to_le_bytes(); b[0] > 190 && b[1] < 40 && b[2] < 50 && b[3] == 255 }));
+        assert!(dec.iter().all(|p| { let b = p.to_le_bytes(); b[2] > 190 && b[1] < 40 && b[0] < 50 && b[3] == 255 }));
     }
 }
