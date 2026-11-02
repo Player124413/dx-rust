@@ -285,6 +285,7 @@ pub fn editor_system(
         st.open = true; st.paused_before = time.is_paused(); time.pause(); state.reset(); EDITOR.store(true, Ordering::Relaxed);
     }
     if !st.open { return; }
+    time.pause();
     let Ok(w) = windows.single() else { return };
     let rect = safe_rect(w);
     for e in events.read() {
@@ -388,7 +389,7 @@ pub fn draw_system(
     if let Ok(mut n) = nodes.get_mut(knob) { n.left = Val::Px(sc.x + off.x - kr); n.top = Val::Px(sc.y - off.y - kr); n.width = Val::Px(kr * 2.0); n.height = Val::Px(kr * 2.0); n.display = if show { Display::Flex } else { Display::None }; }
     if let Ok(mut bg) = bgs.get_mut(knob) { *bg = Color::srgba(0.25, 0.9, 0.8, layout.opacity * 0.65).into(); }
     let _ = &mut vis;
-    draw_editor(&mut commands, editor_open, &layout, Some(&editor), w, &mut visuals, &mut nodes, &mut bgs);
+    draw_editor(&mut commands, editor_open, &layout, Some(&*editor), w, &mut visuals, &mut nodes, &mut bgs);
 }
 
 fn draw_editor(
