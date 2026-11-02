@@ -49,7 +49,12 @@ jobs:
         run: cargo install cargo-ndk --version 4.1.2 --locked
       - name: Resolve and persist Cargo.lock
         run: |
-          cargo metadata --format-version 1 >/dev/null
+          set -o pipefail
+          if ! cargo metadata --format-version 1 >metadata.json 2>lock.log; then
+            cat lock.log
+            while IFS= read -r line; do echo "::error file=Cargo.toml::$line"; done < lock.log
+            exit 1
+          fi
           if ! git diff --quiet -- Cargo.lock; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -81,7 +86,7 @@ jobs:
       - name: Surface build errors in annotations
         if: failure()
         run: |
-          for f in etc2-test.log rust-build.log gradle-build.log; do
+          for f in lock.log etc2-test.log rust-build.log gradle-build.log; do
             [ -f "$f" ] || continue
             grep -E '^error|error\[|FAILURE:|What went wrong|Caused by:|FAILED' "$f" | head -80 | while IFS= read -r line; do
               echo "::error file=$f::$line"

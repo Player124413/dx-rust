@@ -365,7 +365,7 @@ pub fn draw_system(
     for b in &layout.buttons {
         let (e, label) = *visuals.buttons.entry(b.id).or_insert_with(|| {
             let e = commands.spawn((Node { position_type: PositionType::Absolute, justify_content: JustifyContent::Center, align_items: AlignItems::Center, ..default() },
-                BackgroundColor(Color::NONE), BorderColor(Color::NONE), BorderRadius::MAX, GlobalZIndex(40), Pickable::IGNORE)).id();
+                BackgroundColor(Color::NONE), BorderColor::all(Color::NONE), BorderRadius::MAX, GlobalZIndex(40), Pickable::IGNORE)).id();
             let t = commands.spawn((Text::new(b.label()), TextFont { font_size: bevy::text::FontSize::Px(14.0), ..default() }, TextColor(Color::WHITE), Pickable::IGNORE)).id();
             commands.entity(e).add_child(t); (e, t)
         });
@@ -373,7 +373,7 @@ pub fn draw_system(
         let selected = editor_open && editor.selected == Some(b.id);
         if let Ok(mut n) = nodes.get_mut(e) { n.left = Val::Px(c.x - r); n.top = Val::Px(c.y - r); n.width = Val::Px(r * 2.0); n.height = Val::Px(r * 2.0); n.display = if show && b.enabled { Display::Flex } else { Display::None }; }
         if let Ok(mut bg) = bgs.get_mut(e) { *bg = Color::srgba(if selected { 0.18 } else { 0.04 }, if pressed { 0.35 } else { 0.12 }, if pressed { 0.38 } else { 0.15 }, layout.opacity * if pressed { 0.8 } else { 0.5 }).into(); }
-        if let Ok(mut border) = commands.get_entity(e) { border.insert(BorderColor(Color::srgba(0.3, 0.95, 0.85, layout.opacity * if selected { 1.0 } else { 0.65 }))); }
+        if let Ok(mut border) = commands.get_entity(e) { border.insert(BorderColor::all(Color::srgba(0.3, 0.95, 0.85, layout.opacity * if selected { 1.0 } else { 0.65 }))); }
         if let Ok(mut t) = texts.get_mut(label) { **t = b.label(); }
     }
     // Stick base + knob.
