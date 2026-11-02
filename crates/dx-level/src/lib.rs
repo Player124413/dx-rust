@@ -21,6 +21,7 @@ pub mod nav;
 pub mod firetex;
 pub mod skincolor;
 pub mod dds;
+pub mod etc2;
 pub mod relief;
 
 pub const METERS_PER_UNIT: f32 = 1.0 / 52.5;

@@ -118,12 +118,7 @@ impl Default for Bindings {
     }
 }
 
-fn save_path() -> PathBuf {
-    std::env::current_exe()
-        .ok()
-        .and_then(|p| p.parent().map(|d| d.join("keybinds.txt")))
-        .unwrap_or_else(|| PathBuf::from("keybinds.txt"))
-}
+fn save_path() -> PathBuf { crate::platform::data_dir().join("keybinds.txt") }
 
 /// Inputs that can be bound (and parsed back from the save file).
 fn candidates() -> Vec<Input> {
@@ -270,6 +265,11 @@ impl Bindings {
         }
     }
 
+    /// The physical input currently bound to an action (used by touch buttons).
+    pub fn input_for(&self, name: &str) -> Option<Input> {
+        ACTIONS.iter().position(|a| a.0 == name).map(|i| self.map[i])
+    }
+
     /// The physical input bound to an action was pressed this frame (works while a menu has the input).
     pub fn action_just_pressed(&self, name: &str) -> bool {
         match ACTIONS
@@ -344,6 +344,7 @@ pub fn remap_system(
     mut windows: Query<(&mut Window, &CursorOptions)>,
     motion: Res<bevy::input::mouse::AccumulatedMouseMotion>,
     mut pad_cursor: Local<Option<Vec2>>,
+    touch: Res<crate::touch::TouchState>,
 ) {
     let b = &mut *b;
     if let Some(m) = PENDING_MAP.lock().ok().and_then(|mut p| p.take()) {
@@ -387,6 +388,7 @@ pub fn remap_system(
     if pad.scroll != 0.0 {
         scroll.delta.y += pad.scroll;
     }
+    if touch.frame.scroll != 0.0 { scroll.delta.y += touch.frame.scroll; }
     // The pad's cursor is kept here, not read back from the window: after a warp the OS still delivers move
     // events from before it, so reading the position back made the cursor hop between old and new spots. The
     // real mouse moving (raw motion, which warps don't make) hands the cursor back to it.
@@ -410,9 +412,17 @@ pub fn remap_system(
             }
         }
     }
+    if let Some(p) = touch.frame.cursor {
+        if let Some((mut w, _)) = windows.iter_mut().next() {
+            *pad_cursor = Some(p.clamp(Vec2::ZERO, Vec2::new(w.width() - 1.0, w.height() - 1.0)));
+            w.set_cursor_position(*pad_cursor);
+        }
+    }
     // Merge: an input is down while the keyboard / mouse or the pad holds it.
-    let pad_keys: Vec<KeyCode> = pad.inputs.iter().filter_map(|i| if let Input::Key(k) = i { Some(*k) } else { None }).collect();
-    let pad_btns: Vec<MouseButton> = pad.inputs.iter().filter_map(|i| if let Input::Mouse(m) = i { Some(*m) } else { None }).collect();
+    let mut pad_keys: Vec<KeyCode> = pad.inputs.iter().filter_map(|i| if let Input::Key(k) = i { Some(*k) } else { None }).collect();
+    let mut pad_btns: Vec<MouseButton> = pad.inputs.iter().filter_map(|i| if let Input::Mouse(m) = i { Some(*m) } else { None }).collect();
+    pad_keys.extend(touch.frame.keys.iter().copied());
+    pad_btns.extend(touch.frame.buttons.iter().copied());
     b.keys.clear();
     b.buttons.clear();
     let mut all_k: Vec<KeyCode> = b.kb_keys.get_pressed().chain(b.kb_keys.get_just_released()).chain(b.kb_keys.get_just_pressed()).copied().collect();

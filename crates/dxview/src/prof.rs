@@ -38,7 +38,7 @@ fn hitch_write(text: &str) {
     if LINES.fetch_add(1, Ordering::Relaxed) >= 300 {
         return;
     }
-    let Some(dir) = std::env::current_exe().ok().and_then(|e| e.parent().map(|p| p.to_path_buf())) else { return };
+    let dir = crate::platform::data_dir();
     if let Ok(mut f) = std::fs::OpenOptions::new().create(true).append(true).open(dir.join("hitch.log")) {
         let _ = f.write_all(text.as_bytes());
     }

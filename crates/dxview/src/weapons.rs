@@ -751,19 +751,19 @@ pub fn image_for(
         .map(|(_, t)| t)
         .or_else(|| assets.lib.load_wet(path))
         .map(|t| {
-            let (format, data, levels) = crate::image_data(&t);
+            let gpu = crate::image_data(&t);
             let mut img = Image::new_uninit(
                 Extent3d {
-                    width: t.width,
-                    height: t.height,
+                    width: gpu.width,
+                    height: gpu.height,
                     depth_or_array_layers: 1,
                 },
                 TextureDimension::D2,
-                format,
+                gpu.format,
                 RenderAssetUsages::RENDER_WORLD,
             );
-            img.texture_descriptor.mip_level_count = levels;
-            img.data = Some(data);
+            img.texture_descriptor.mip_level_count = gpu.levels;
+            img.data = Some(gpu.data);
             img.sampler = ImageSampler::Descriptor(ImageSamplerDescriptor {
                 address_mode_u: ImageAddressMode::Repeat,
                 address_mode_v: ImageAddressMode::Repeat,
@@ -847,19 +847,19 @@ pub fn masked_image_for(
         return h.clone();
     }
     let h = assets.lib.load_gpu(path, true).map(|(_, t)| {
-        let (format, data, levels) = crate::image_data(&t);
+        let gpu = crate::image_data(&t);
         let mut img = Image::new_uninit(
             Extent3d {
-                width: t.width,
-                height: t.height,
+                width: gpu.width,
+                height: gpu.height,
                 depth_or_array_layers: 1,
             },
             TextureDimension::D2,
-            format,
+            gpu.format,
             RenderAssetUsages::RENDER_WORLD,
         );
-        img.texture_descriptor.mip_level_count = levels;
-        img.data = Some(data);
+        img.texture_descriptor.mip_level_count = gpu.levels;
+        img.data = Some(gpu.data);
         img.sampler = ImageSampler::Descriptor(ImageSamplerDescriptor {
             address_mode_u: ImageAddressMode::Repeat,
             address_mode_v: ImageAddressMode::Repeat,

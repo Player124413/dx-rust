@@ -46,10 +46,7 @@ static SESSION: RwLock<Option<NewGame>> = RwLock::new(None);
 static LOADED: std::sync::Once = std::sync::Once::new();
 
 fn path() -> std::path::PathBuf {
-    std::env::current_exe()
-        .ok()
-        .and_then(|e| e.parent().map(|p| p.join("session.txt")))
-        .unwrap_or_else(|| "session.txt".into())
+    crate::platform::data_dir().join("session.txt")
 }
 
 pub fn encode(ng: &NewGame) -> String {
@@ -391,6 +388,15 @@ pub fn start(root: &std::path::Path, map: &str, ng: &NewGame) {
 
 /// Start a fresh copy of the game on `map`.
 pub fn relaunch(root: &std::path::Path, map: &str) {
+    #[cfg(target_os = "android")]
+    {
+        // An Android app cannot replace its own process with an executable. Stay in the Activity and use
+        // the in-process map loader; the session file has already been written by the caller.
+        crate::loader::request(map, crate::loader::Goal::Restart);
+        let _ = root;
+        return;
+    }
+    #[cfg(not(target_os = "android"))]
     if let Ok(exe) = std::env::current_exe() {
         if std::process::Command::new(exe).arg(root).arg(map).spawn().is_ok() {
             std::process::exit(0);

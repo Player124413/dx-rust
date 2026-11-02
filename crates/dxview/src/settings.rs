@@ -196,13 +196,40 @@ pub const DEFAULTS: &[(&str, f32)] = &[
     ("PadRumble", 2.0),
     ("PadSpeaker", 0.0),
     ("PadSpeakerVolume", 1.0),
+    // Android port. Quality: 0 Auto, 1 Battery, 2 Balanced, 3 High (High allows optional enhancements).
+    ("MobileQuality", 0.0),
+    ("MobileTextureMode", 0.0),
+    ("MobileFps", 0.0),
+    ("TouchEnabled", 1.0),
+    ("TouchEditOnStart", 0.0),
+];
+
+/// First-run Android defaults. Existing user choices are never overwritten.
+#[cfg(target_os = "android")]
+const ANDROID_DEFAULTS: &[(&str, f32)] = &[
+    ("MobileQuality", 0.0), ("MobileTextureMode", 0.0), ("MobileFps", 0.0),
+    ("TouchEnabled", 1.0), ("TouchEditOnStart", 0.0),
+    ("DisplayMode", 0.0), ("VSync", 1.0), ("HUDScale", 1.0),
+    ("HDTextures", 0.0), ("HDModels", 0.0), ("HDCharacters", 0.0),
+    ("DdsCharacters", 0.0), ("DdsItems", 0.0), ("DdsWorld", 0.0),
+    ("ReliefMaps", 0.0), ("RemasteredLighting", 0.0), ("RealtimeShadows", 0.0),
+    ("SkeletalCharacters", 0.0), ("Ragdolls", 0.0), ("FluidBlood", 0.0),
+    ("DiscordPresence", 0.0), ("EffectsChannels", 16.0), ("SampleRate", 1.0),
+    ("PadTriggers", 0.0), ("PadHaptics", 0.0), ("PadRumble", 0.0),
+];
+
+/// Expensive optional systems are capped below High so a saved desktop "Modern" preset cannot brick a phone.
+#[cfg(target_os = "android")]
+const HEAVY: &[&str] = &[
+    "HDTextures", "HDModels", "HDCharacters", "DdsCharacters", "DdsItems", "DdsWorld",
+    "RemasteredLighting", "ReliefMaps", "RealtimeShadows", "ModernWater", "AtmosphericFog",
+    "LightShafts", "Clouds", "Bloom", "AmbientOcclusion", "SoftShadows", "SkeletalCharacters",
+    "Ragdolls", "FluidBlood", "EnhancedFX", "CoatCloth", "FirstPersonBody", "BodyWounds",
+    "LightHalos", "Skyline", "FogVolumes", "ModernCoronas", "RoomReverb", "SoundOcclusion",
 ];
 
 fn path() -> std::path::PathBuf {
-    std::env::current_exe()
-        .ok()
-        .and_then(|e| e.parent().map(|p| p.join("settings.txt")))
-        .unwrap_or_else(|| "settings.txt".into())
+    crate::platform::data_dir().join("settings.txt")
 }
 
 fn ensure() {
@@ -219,6 +246,8 @@ fn ensure() {
             }
         }
     }
+    #[cfg(target_os = "android")]
+    for (k, v) in ANDROID_DEFAULTS { m.entry((*k).to_string()).or_insert(*v); }
     if let Ok(mut w) = VALUES.write() {
         *w = Some(m);
     }
@@ -226,6 +255,12 @@ fn ensure() {
 
 pub fn get(key: &str) -> f32 {
     ensure();
+    #[cfg(target_os = "android")]
+    if key != "MobileQuality" && HEAVY.contains(&key) && get_raw("MobileQuality") < 2.5 { return 0.0; }
+    get_raw(key)
+}
+
+fn get_raw(key: &str) -> f32 {
     VALUES
         .read()
         .ok()
@@ -269,7 +304,7 @@ pub fn save() {
     for (k, v) in m {
         out.push_str(&format!("{k}={v}\n"));
     }
-    let _ = std::fs::write(path(), out);
+    let _ = crate::platform::atomic_write(&path(), out.as_bytes());
 }
 
 // ---------------------------------------------------------------- typed views
@@ -366,3 +401,7 @@ mod tests {
         assert_eq!(super::default_of("LogTimeoutValue"), 3.0);
     }
 }
+
+/// 0 Auto / 1 Battery / 2 Balanced / 3 High.
+pub fn mobile_quality() -> u8 { (get("MobileQuality").round().clamp(0.0, 3.0)) as u8 }
+pub fn mobile_texture_cap() -> u32 { match mobile_quality() { 1 => 256, 3 => 2048, _ => 512 } }

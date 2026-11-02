@@ -1014,9 +1014,7 @@ pub fn restore(s: AugSave) {
     bump();
 }
 
-fn global_file() -> std::path::PathBuf {
-    std::env::current_exe().ok().and_then(|e| e.parent().map(|p| p.join("augmentique.txt"))).unwrap_or_else(|| "augmentique.txt".into())
-}
+fn global_file() -> std::path::PathBuf { crate::platform::data_dir().join("augmentique.txt") }
 
 /// Outfits unlocked in finished playthroughs (DeusExPlayer.unlockedOutfits, globalconfig).
 fn global_unlocks() -> Vec<String> {

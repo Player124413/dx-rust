@@ -87,6 +87,10 @@ pub fn stop(owner: u64, slot: u8) {
 /// MissionIntro: SoundVolume 32 while the intro plays ("turn down the sound so we can hear the speech"); speech
 /// keeps its own volume. 1.0 otherwise.
 static DUCK: Mutex<f32> = Mutex::new(1.0);
+static BACKGROUND_MUTE: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+/// Android background/foreground: silence the mixer immediately without destroying voices or music state.
+pub fn set_background_mute(on: bool) { BACKGROUND_MUTE.store(on, std::sync::atomic::Ordering::Relaxed); }
 
 /// Set the effects volume to an absolute SoundVolume (0..255) for now, or back to the setting (None).
 pub fn set_instant_sound_volume(v: Option<f32>) {
@@ -685,6 +689,7 @@ pub fn sound_system(
     blockers: Res<crate::actors::Blockers>,
 ) {
     let _prof = crate::prof::scope("sound::sound_system");
+    if BACKGROUND_MUTE.load(std::sync::atomic::Ordering::Relaxed) { st.audio.set_volumes(0.0, 0.0); return; }
     // Settings > Sound volumes (live while the slider moves). Defaults 204 / 153 give the old levels.
     let gen = crate::settings::generation();
     if gen != st.volume_gen {

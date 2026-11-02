@@ -1,0 +1,12 @@
+<resources>
+    <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#071014</item>
+        <item name="android:colorAccent">#4de6c4</item>
+        <item name="android:fontFamily">sans</item>
+    </style>
+    <style name="GameTheme" parent="android:style/Theme.Material.NoActionBar.Fullscreen">
+        <item name="android:windowBackground">#000000</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
+        <item name="android:keepScreenOn">true</item>
+    </style>
+</resources>

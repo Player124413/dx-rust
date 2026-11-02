@@ -10,4 +10,7 @@ unreal-pkg = { path = "../unreal-pkg" }
 bcdec_rs = "0.2.1"
 
 [dev-dependencies]
+texture2ddecoder = "0.1"
+
+[dev-dependencies]
 imsim-core = { path = "../imsim-core" }

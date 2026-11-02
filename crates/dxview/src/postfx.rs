@@ -67,7 +67,7 @@ pub fn postfx_system(
             commands.entity(e).remove::<ScreenSpaceAmbientOcclusion>();
         }
     }
-    let want_msaa = if ssao { Msaa::Off } else { Msaa::Sample4 };
+    let want_msaa = if cfg!(target_os = "android") || ssao { Msaa::Off } else { Msaa::Sample4 };
     for (e, msaa, smaa, last) in &cams {
         if *msaa != want_msaa {
             commands.entity(e).insert(want_msaa);

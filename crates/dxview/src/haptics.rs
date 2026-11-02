@@ -56,6 +56,7 @@ fn with(f: impl FnOnce(&mut Synth)) {
 }
 
 pub fn setup() {
+    if cfg!(target_os = "android") { return; }
     if STARTED.swap(true, Ordering::Relaxed) || std::env::var("DXVIEW_NO_HID").is_ok() {
         return;
     }

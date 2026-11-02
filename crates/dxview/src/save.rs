@@ -409,12 +409,7 @@ fn unsimple(v: &SimpleValue) -> Value {
 // ------------------------------------------------------------------------------------------------ files
 
 /// The save folder beside the exe.
-pub fn dir() -> PathBuf {
-    std::env::current_exe()
-        .ok()
-        .and_then(|e| e.parent().map(|p| p.join("Save")))
-        .unwrap_or_else(|| PathBuf::from("Save"))
-}
+pub fn dir() -> PathBuf { crate::platform::data_dir().join("Save") }
 
 pub fn quick_path() -> PathBuf {
     dir().join("QuickSave.ron")

@@ -129,6 +129,9 @@ mod alertui;
 mod uicanvas;
 mod weapons;
 mod wisp;
+mod platform;
+mod mobile;
+mod touch;
 
 use actors::{Blockers, Deco, World};
 use dx_level::{bevy_to_ue, ue_to_bevy, Level, SurfaceClass};
@@ -502,9 +505,7 @@ fn install_crash_log() {
     std::panic::set_hook(Box::new(move |info| {
         let msg = format!("dxview crashed: {info}\n{}\n", std::backtrace::Backtrace::force_capture());
         eprintln!("{msg}");
-        if let Some(dir) = std::env::current_exe().ok().and_then(|p| p.parent().map(|d| d.to_path_buf())) {
-            let _ = std::fs::write(dir.join("crash.log"), &msg);
-        }
+        let _ = std::fs::write(crate::platform::data_dir().join("crash.log"), &msg);
         prev(info);
     }));
 }
@@ -554,19 +555,21 @@ pub fn make_player(level: &Level, (params, eye_height, bob): (MoveParams, f64, f
     }
 }
 
-fn main() {
+#[bevy_main]
+pub fn main() {
+    platform::init();
     prof::init();
     // DXT1 textures go to the GPU compressed (desktop GPUs and the Steam Deck take BC formats; checked again once
     // the render device exists). DXVIEW_NO_BC1 decodes them as before.
     dx_level::set_bc1_supported(std::env::var_os("DXVIEW_NO_BC1").is_none());
     let args: Vec<String> = std::env::args().collect();
     // The game folder: the first argument, else the launcher's choice (launcher.txt beside the exe), else the default.
-    let root = args
+    let root = crate::platform::android_game_root().map(|p| p.display().to_string()).or_else(|| args
         .get(1)
         .filter(|a| !a.starts_with("--"))
         .cloned()
         .or_else(|| {
-            let dir = std::env::current_exe().ok()?.parent()?.to_path_buf();
+            let dir = crate::platform::data_dir();
             std::fs::read_to_string(dir.join("launcher.txt"))
                 .ok()?
                 .lines()
@@ -575,11 +578,11 @@ fn main() {
         })
         // Else the usual Steam / GOG / Heroic places (Steam Deck included).
         .or_else(|| unreal_pkg::gamedir::detect().map(|p| p.display().to_string()))
-        .unwrap_or_else(|| r"C:\Games\Deus Ex".to_string());
+        .unwrap_or_else(|| r"C:\Games\Deus Ex".to_string()));
     // Mods (unreal_pkg::mods): the launcher's Mods page writes Mod.<id>= / ModOn.<id>= lines in launcher.txt (Lay D
     // Denton's older LDDPPath= still counts). Overlays (Lay D Denton) are laid over the game folder, addons searched
     // after it, HD texture packs used texture by texture. DXVIEW_MOD (';'-separated folders) adds overlays for tests.
-    let exe_dir = std::env::current_exe().ok().and_then(|e| e.parent().map(|p| p.to_path_buf())).unwrap_or_default();
+    let exe_dir = crate::platform::data_dir();
     let mod_settings = unreal_pkg::mods::from_lines(&unreal_pkg::mods::read_launcher_txt(&exe_dir.join("launcher.txt")));
     let mut enabled = unreal_pkg::mods::enabled(&mod_settings);
     // DXVIEW_MODS="id=folder;id=folder": mods for test runs.
@@ -624,11 +627,8 @@ fn main() {
         if let Some(p) = unreal_pkg::mods::active("relief") {
             dirs.push(p);
         }
-        if let Some(exe) = std::env::current_exe().ok().and_then(|p| p.parent().map(|d| d.join("relief"))) {
-            if exe.is_dir() {
-                dirs.push(exe);
-            }
-        }
+        let relief = crate::platform::data_dir().join("relief");
+        if relief.is_dir() { dirs.push(relief); }
         let tex = PathBuf::from(&root).join("Textures");
         if tex.is_dir() {
             dirs.push(tex);
@@ -684,8 +684,8 @@ fn main() {
         level.stats.skipped_backdrop,
         level.stats.skipped_invisible
     );
-    App::new()
-        .add_plugins(DefaultPlugins.set(bevy::log::LogPlugin {
+    let mut app = App::new();
+    app.add_plugins(DefaultPlugins.set(bevy::log::LogPlugin {
             custom_layer: prof::span_layer,
             ..default()
         }).set(WindowPlugin {
@@ -697,12 +697,12 @@ fn main() {
                     .copied()
                     .unwrap_or((1600, 900))
                     .into(),
-                mode: menus::window_mode(settings::get("DisplayMode")),
-                present_mode: menus::present_mode(settings::get("VSync")),
+                mode: if cfg!(target_os = "android") { bevy::window::WindowMode::BorderlessFullscreen(bevy::window::MonitorSelection::Primary) } else { menus::window_mode(settings::get("DisplayMode")) },
+                present_mode: if cfg!(target_os = "android") { bevy::window::PresentMode::AutoVsync } else { menus::present_mode(settings::get("VSync")) },
                 ..default()
             }),
             ..default()
-        }))
+        }).set(bevy::render::RenderPlugin { render_creation: mobile::render_creation(), ..default() }))
         .insert_resource(ClearColor(Color::srgb(0.05, 0.07, 0.12)))
         // A command aimed at an entity that went away the same frame (a pawn destroyed by the mission script,
         // an effect that despawned itself) is logged, never a crash.
@@ -882,8 +882,8 @@ fn main() {
         .add_systems(Update, projgen::projgen_system)
         .add_systems(Update, fogball::fogball_system)
         // Shadow map sizes: the real-time shadows' cube maps (4 lights x 6 faces) and the spot / moon maps.
-        .insert_resource(bevy::light::PointLightShadowMap { size: 512 })
-        .insert_resource(bevy::light::DirectionalLightShadowMap { size: 1024 })
+        .insert_resource(bevy::light::PointLightShadowMap { size: if cfg!(target_os = "android") { 256 } else { 512 } })
+        .insert_resource(bevy::light::DirectionalLightShadowMap { size: if cfg!(target_os = "android") { 512 } else { 1024 } })
         .add_systems(Update, water::ocean_system)
         .add_systems(Update, glow::glow_system)
         .add_systems(Update, (shafts::shafts_system.after(dynlight::aug_light_system), postfx::postfx_system))
@@ -1142,7 +1142,17 @@ fn main() {
                     .after(frobui::frob_target_system),
             ),
         )
-        .run();
+        ;
+    app.init_resource::<platform::Lifecycle>()
+        .init_resource::<touch::TouchState>()
+        .init_resource::<touch::TouchLayout>()
+        .init_resource::<touch::EditorState>()
+        .init_resource::<mobile::MobileRender>()
+        .add_systems(Startup, (mobile::setup, touch::setup).chain())
+        .add_systems(PreUpdate, (touch::input_system, touch::editor_system).chain().after(bevy::input::InputSystems).before(keybinds::remap_system))
+        .add_systems(Update, (mobile::adaptive_system, mobile::overlay_system, touch::draw_system))
+        .add_systems(First, platform::lifecycle_system);
+    app.run();
 }
 
 /// The render device takes BC (DXT) compressed textures.
@@ -1159,14 +1169,15 @@ fn detect_bc1(dev: Option<Res<bevy::render::renderer::RenderDevice>>) {
 
 /// A TextureImage's pixels for the GPU: (format, mips concatenated). BC1 blocks pass through unless the device
 /// can't take them, then they decode to RGBA8.
-pub fn image_data(t: &dx_level::TextureImage) -> (TextureFormat, Vec<u8>, u32) {
+pub fn image_data(t: &dx_level::TextureImage) -> GpuImage {
+    if cfg!(target_os = "android") { return mobile::prepare_texture(t); }
     let mut data = Vec::new();
     if t.bc3 {
         if GPU_BC.load(std::sync::atomic::Ordering::Relaxed) {
             for m in &t.mips {
                 data.extend_from_slice(m);
             }
-            return (TextureFormat::Bc3RgbaUnormSrgb, data, t.mips.len() as u32);
+            return GpuImage { width: t.width, height: t.height, format: TextureFormat::Bc3RgbaUnormSrgb, data, levels: t.mips.len() as u32 };
         }
         let mut n = 0;
         for (k, m) in t.mips.iter().enumerate() {
@@ -1175,13 +1186,13 @@ pub fn image_data(t: &dx_level::TextureImage) -> (TextureFormat, Vec<u8>, u32) {
             data.extend_from_slice(&px);
             n += 1;
         }
-        return (TextureFormat::Rgba8UnormSrgb, data, n.max(1));
+        return GpuImage { width: t.width, height: t.height, format: TextureFormat::Rgba8UnormSrgb, data, levels: n.max(1) };
     }
     if t.bc1 && GPU_BC.load(std::sync::atomic::Ordering::Relaxed) {
         for m in &t.mips {
             data.extend_from_slice(m);
         }
-        return (TextureFormat::Bc1RgbaUnormSrgb, data, t.mips.len() as u32);
+        return GpuImage { width: t.width, height: t.height, format: TextureFormat::Bc1RgbaUnormSrgb, data, levels: t.mips.len() as u32 };
     }
     if t.bc1 {
         let mut n = 0;
@@ -1194,28 +1205,33 @@ pub fn image_data(t: &dx_level::TextureImage) -> (TextureFormat, Vec<u8>, u32) {
             data.extend_from_slice(&out);
             n += 1;
         }
-        return (TextureFormat::Rgba8UnormSrgb, data, n.max(1));
+        return GpuImage { width: t.width, height: t.height, format: TextureFormat::Rgba8UnormSrgb, data, levels: n.max(1) };
     }
     for m in &t.mips {
         data.extend_from_slice(m);
     }
-    (TextureFormat::Rgba8UnormSrgb, data, t.mips.len() as u32)
+    GpuImage { width: t.width, height: t.height, format: TextureFormat::Rgba8UnormSrgb, data, levels: t.mips.len() as u32 }
 }
 
+/// Pixels ready for upload, after the platform's size/compression policy.
+pub struct GpuImage { pub width: u32, pub height: u32, pub format: TextureFormat, pub data: Vec<u8>, pub levels: u32 }
+impl GpuImage { fn rgba(width: u32, height: u32, data: Vec<u8>, levels: u32) -> Self { Self { width, height, format: TextureFormat::Rgba8UnormSrgb, data, levels } } }
+
+
 pub fn make_image(t: &dx_level::TextureImage) -> Image {
-    let (format, data, levels) = image_data(t);
+    let gpu = image_data(t);
     let mut img = Image::new_uninit(
         Extent3d {
-            width: t.width,
-            height: t.height,
+            width: gpu.width,
+            height: gpu.height,
             depth_or_array_layers: 1,
         },
         TextureDimension::D2,
-        format,
+        gpu.format,
         RenderAssetUsages::RENDER_WORLD,
     );
-    img.texture_descriptor.mip_level_count = levels;
-    img.data = Some(data);
+    img.texture_descriptor.mip_level_count = gpu.levels;
+    img.data = Some(gpu.data);
     img.sampler = ImageSampler::Descriptor(ImageSamplerDescriptor {
         address_mode_u: ImageAddressMode::Repeat,
         address_mode_v: ImageAddressMode::Repeat,
@@ -1223,7 +1239,7 @@ pub fn make_image(t: &dx_level::TextureImage) -> Image {
         mag_filter: ImageFilterMode::Linear,
         min_filter: ImageFilterMode::Linear,
         mipmap_filter: ImageFilterMode::Linear,
-        anisotropy_clamp: 16,
+        anisotropy_clamp: if cfg!(target_os = "android") { 2 } else { 16 },
         ..default()
     });
     img
@@ -1725,6 +1741,7 @@ fn fly(
     mut walk_test: Option<ResMut<WalkTest>>,
     movers_res: Res<movers::Movers>,
     mut frob_req: ResMut<pickups::FrobRequest>,
+    mut touch: ResMut<touch::TouchState>,
     (carrying, mut ph, weapons_res, mut scripted, mouse): (
         Res<carry::Carrying>,
         ResMut<ai::PlayerHealth>,
@@ -1785,14 +1802,16 @@ fn fly(
     }
     let free_cam = thirdperson::free();
     let mut looked = false;
-    if cursor.grab_mode == CursorGrabMode::Locked {
+    let touch_look = touch.take_look();
+    if cursor.grab_mode == CursorGrabMode::Locked || (cfg!(target_os = "android") && touch_look != Vec2::ZERO) {
         // MouseSensitivity (default 3) scales the look; Invert Mouse flips the pitch.
         let k = 0.0022 * crate::settings::mouse_sensitivity() / 3.0;
         let inv = if crate::settings::invert_mouse() { -1.0 } else { 1.0 };
         // The gamepad's right stick turns at a rate (gamepad.rs).
         let pad = gamepad::look_delta(time.delta_secs());
-        let dyaw = motion.delta.x * k + pad.x;
-        let dpitch = -inv * motion.delta.y * k + pad.y;
+        let tk = 0.0045 * crate::touch::look_sensitivity();
+        let dyaw = motion.delta.x * k + pad.x + touch_look.x * tk;
+        let dpitch = -inv * motion.delta.y * k + pad.y - inv * touch_look.y * tk;
         looked = dyaw != 0.0 || dpitch != 0.0;
         if free_cam {
             thirdperson::orbit_look(dyaw, dpitch);
@@ -1874,6 +1893,11 @@ fn fly(
         if let Some(a) = gamepad::move_axes() {
             if !crate::inventory_screen::screen_open() && !crate::consys::third_person() {
                 wish = (fu * a.y as f64 + ru * a.x as f64).normalize_or_zero();
+            }
+        }
+        if let Some(a) = touch.move_axes() {
+            if !crate::inventory_screen::screen_open() && !crate::consys::third_person() {
+                wish = (fu * a.y as f64 + ru * a.x as f64).clamp_length_max(1.0);
             }
         }
         // Free third-person camera: JC turns to face the way he moves, or where the camera looks while aiming or

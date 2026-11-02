@@ -76,6 +76,7 @@ fn norm(map: &str) -> String {
 }
 
 fn start_prefetch(root: std::path::PathBuf, map: &str) {
+    if cfg!(target_os = "android") { return; }
     let m = norm(map);
     let Ok(mut p) = PREFETCH.lock() else { return };
     if p.as_ref().is_some_and(|x| x.map == m) {

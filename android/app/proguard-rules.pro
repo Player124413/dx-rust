@@ -1,0 +1,2 @@
+-keep class com.google.androidgamesdk.** { *; }
+-keep class org.dxrust.port.** { *; }

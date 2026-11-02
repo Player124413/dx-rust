@@ -4,11 +4,16 @@ license = "GPL-3.0-or-later"
 edition.workspace = true
 version.workspace = true
 
-[build-dependencies]
-winresource = "0.1"
+[lib]
+name = "dxview"
+path = "src/lib.rs"
+crate-type = ["lib", "cdylib"]
+
+[[bin]]
+name = "dxview"
+path = "src/bin/dxview.rs"
 
 [dependencies]
-bevy = { version = "0.19.1", default-features = false, features = ["3d", "ui", "experimental_pbr_pcss"] }
 dx-level = { path = "../dx-level" }
 imsim-core = { path = "../imsim-core" }
 unreal-pkg = { path = "../unreal-pkg" }
@@ -17,17 +22,35 @@ glam = "0.32"
 serde = { version = "1", features = ["derive"] }
 ron = "0.12"
 half = "2.7"
-# Gamepads (XInput / Windows.Gaming.Input / evdev) for controller support.
-gilrs = "0.11"
 cpal = "0.15"
-hidapi = { version = "2.6", default-features = false, features = ["linux-static-hidraw"] }
+gilrs = "0.11"
 # Ragdolls (skeletal.rs ragdoll): rigid bodies and joints.
 avian3d = { version = "0.7", default-features = false, features = ["3d", "f32", "parry-f32", "parallel", "xpbd_joints"] }
 
+# Desktop controller backends. Android's setup paths do not open evdev/HID devices.
+[target.'cfg(not(target_os = "android"))'.dependencies]
+hidapi = { version = "2.6", default-features = false, features = ["linux-static-hidraw"] }
+
+[target.'cfg(target_os = "android")'.dependencies]
+ndk = "0.9"
+# Enable the native Android GLES backend in the same wgpu build Bevy uses; Vulkan remains preferred.
+wgpu = { version = "29.0.3", default-features = false, features = ["gles"] }
+
+[target.'cfg(not(target_os = "android"))'.dependencies.bevy]
+version = "0.19.1"
+default-features = false
+features = ["3d", "ui", "experimental_pbr_pcss"]
+
+[target.'cfg(target_os = "android")'.dependencies.bevy]
+version = "0.19.1"
+default-features = false
+features = ["3d", "ui", "experimental_pbr_pcss", "android-game-activity", "android_shared_stdcxx"]
+
+[build-dependencies]
+winresource = "0.1"
+
 [features]
-# Chrome trace of every system, main and render world: cargo build --features trace (writes trace-*.json).
 trace = ["bevy/trace_chrome"]
-# Bevy's spans (every system, render graph node, submit, present) summed per frame into prof.log with DXVIEW_PROF=1.
 spans = ["bevy/trace", "bevy/debug"]
 
 [target.'cfg(windows)'.dependencies]

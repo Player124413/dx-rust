@@ -25,7 +25,7 @@ fn app_id() -> Option<String> {
             return Some(v.trim().to_string());
         }
     }
-    let dir = std::env::current_exe().ok().and_then(|e| e.parent().map(|p| p.to_path_buf())).unwrap_or_default();
+    let dir = crate::platform::data_dir();
     std::fs::read_to_string(dir.join("launcher.txt"))
         .unwrap_or_default()
         .lines()

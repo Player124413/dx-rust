@@ -163,6 +163,7 @@ pub fn glyph_kind() -> PadKind {
 pub struct GilrsRes(pub gilrs::Gilrs);
 
 pub fn setup(world: &mut World) {
+    if cfg!(target_os = "android") { return; }
     match gilrs::Gilrs::new() {
         Ok(g) => {
             for (_, p) in g.gamepads() {
@@ -360,12 +361,7 @@ pub struct PadBindings {
     pub map: Vec<Option<PadBtn>>,
 }
 
-fn save_path() -> PathBuf {
-    std::env::current_exe()
-        .ok()
-        .and_then(|p| p.parent().map(|d| d.join("padbinds.txt")))
-        .unwrap_or_else(|| PathBuf::from("padbinds.txt"))
-}
+fn save_path() -> PathBuf { crate::platform::data_dir().join("padbinds.txt") }
 
 static BINDS: Mutex<Option<Vec<Option<PadBtn>>>> = Mutex::new(None);
 
