@@ -1,0 +1,859 @@
+    Building arm64-v8a (aarch64-linux-android)
+   Compiling proc-macro2 v1.0.107
+   Compiling unicode-ident v1.0.26
+   Compiling quote v1.0.47
+   Compiling serde_core v1.0.229
+   Compiling cfg-if v1.0.5
+   Compiling libm v0.2.16
+   Compiling autocfg v1.5.1
+   Compiling log v0.4.34
+   Compiling libc v0.2.190
+   Compiling syn v3.0.6
+   Compiling syn v2.0.119
+   Compiling num-traits v0.2.19
+   Compiling winnow v1.0.4
+   Compiling hashbrown v0.17.1
+   Compiling equivalent v1.0.2
+   Compiling indexmap v2.14.2
+   Compiling toml_parser v1.1.5+spec-1.1.0
+   Compiling toml_datetime v1.1.2+spec-1.1.0
+   Compiling toml_edit v0.25.17+spec-1.1.0
+   Compiling thiserror v2.0.21
+   Compiling serde v1.0.229
+   Compiling bytemuck_derive v1.12.1
+   Compiling thiserror-impl v2.0.21
+   Compiling serde_derive v1.0.229
+   Compiling foldhash v0.2.0
+   Compiling pin-project-lite v0.2.17
+   Compiling crossbeam-utils v0.8.23
+   Compiling cfg_aliases v0.2.2
+   Compiling bytemuck v1.25.2
+   Compiling bitflags v2.13.2
+   Compiling smallvec v1.16.2
+   Compiling allocator-api2 v0.2.21
+   Compiling parking v2.2.1
+   Compiling arrayvec v0.7.8
+   Compiling hashbrown v0.16.1
+   Compiling bevy_macro_utils v0.19.1
+   Compiling futures-core v0.3.34
+   Compiling raw-window-handle v0.6.2
+   Compiling encase_derive_impl v0.12.1
+   Compiling typewit v1.15.2
+   Compiling const_panic v0.2.17
+   Compiling futures-io v0.3.34
+   Compiling rand_core v0.10.1
+   Compiling fastrand v2.5.0
+   Compiling rand v0.10.3
+   Compiling encase_derive v0.12.1
+   Compiling event-listener v5.4.2
+   Compiling approx v0.5.1
+   Compiling encase v0.12.1
+   Compiling event-listener-strategy v0.5.4
+   Compiling futures-lite v2.6.1
+   Compiling concurrent-queue v2.5.0
+   Compiling memchr v2.8.3
+   Compiling foldhash v0.1.5
+   Compiling getrandom v0.4.3
+   Compiling hashbrown v0.15.5
+   Compiling glam v0.32.1
+   Compiling wgpu-types v29.0.4
+   Compiling once_cell v1.21.4
+   Compiling uuid v1.27.0
+   Compiling async-channel v2.5.0
+   Compiling typeid v1.0.3
+   Compiling unicode-segmentation v1.13.3
+   Compiling convert_case v0.10.0
+   Compiling jni-sys-macros v0.4.1
+   Compiling spin v0.10.1
+   Compiling unicode-xid v0.2.6
+   Compiling derive_more-impl v2.1.1
+   Compiling jni-sys v0.4.1
+   Compiling bevy_platform v0.19.1
+   Compiling smol_str v0.2.2
+   Compiling thread_local v1.1.10
+   Compiling jni-sys v0.3.1
+   Compiling rustversion v1.0.23
+   Compiling erased-serde v0.4.10
+   Compiling derive_more v2.1.1
+   Compiling fixedbitset v0.5.7
+   Compiling downcast-rs v2.0.2
+   Compiling disqualified v1.1.0
+   Compiling bevy_utils v0.19.1
+   Compiling petgraph v0.8.3
+   Compiling jobserver v0.1.35
+   Compiling bevy_reflect_derive v0.19.1
+   Compiling assert_type_match v0.1.1
+   Compiling variadics_please v1.1.0
+   Compiling find-msvc-tools v0.1.14
+   Compiling inventory v0.3.25
+   Compiling shlex v2.0.1
+   Compiling bevy_ptr v0.19.1
+   Compiling slab v0.4.12
+   Compiling cc v1.6.0
+   Compiling async-task v4.7.1
+   Compiling version_check v0.9.5
+   Compiling atomic-waker v1.1.2
+   Compiling slotmap v1.1.1
+   Compiling bevy_reflect v0.19.1
+   Compiling bevy_ecs_macro_logic v0.19.1
+   Compiling nix v0.31.3
+   Compiling async-executor v1.14.0
+   Compiling crossbeam-queue v0.3.14
+   Compiling nonmax v0.5.5
+   Compiling thiserror v1.0.69
+   Compiling bevy_tasks v0.19.1
+   Compiling bevy_ecs_macros v0.19.1
+   Compiling thiserror-impl v1.0.69
+   Compiling proc-macro-crate v3.5.0
+   Compiling simdutf8 v0.1.5
+   Compiling bumpalo v3.20.3
+   Compiling num_enum_derive v0.7.6
+   Compiling ctrlc v3.5.2
+   Compiling bevy_derive v0.19.1
+   Compiling bytes v1.12.1
+   Compiling either v1.19.0
+   Compiling ndk-sys v0.6.0+11769913
+   Compiling num_enum v0.7.6
+   Compiling combine v4.6.8
+   Compiling tracing-core v0.1.36
+   Compiling semver v1.0.28
+   Compiling zerocopy v0.8.62
+   Compiling rustc_version v0.4.1
+   Compiling tracing-attributes v0.1.31
+   Compiling zerocopy-derive v0.8.62
+   Compiling same-file v1.0.6
+   Compiling bevy_ecs v0.19.1
+   Compiling walkdir v2.5.0
+   Compiling tracing v0.1.44
+   Compiling jni-macros v0.22.4
+   Compiling ndk-context v0.1.1
+   Compiling simd_cesu8 v1.2.0
+   Compiling jni v0.22.4
+   Compiling half v2.7.1
+   Compiling android-activity v0.6.1
+   Compiling bevy_app v0.19.1
+   Compiling ndk v0.9.0
+   Compiling android-properties v0.2.2
+   Compiling rustix v1.1.5
+   Compiling itertools v0.14.0
+   Compiling rand_distr v0.6.0
+   Compiling crossbeam-channel v0.5.17
+   Compiling errno v0.3.14
+   Compiling linux-raw-sys v0.12.1
+   Compiling bevy_time v0.19.1
+   Compiling bevy_math v0.19.1
+   Compiling blake3 v1.8.7
+   Compiling piper v0.2.5
+   Compiling async-io v2.6.0
+   Compiling blocking v1.7.0
+   Compiling polling v3.11.0
+   Compiling sysinfo v0.38.4
+   Compiling async-lock v3.4.2
+   Compiling futures-macro v0.3.34
+   Compiling constant_time_eq v0.4.2
+   Compiling futures-task v0.3.34
+   Compiling const-fnv1a-hash v1.1.0
+   Compiling bevy_diagnostic v0.19.1
+   Compiling futures-util v0.3.34
+   Compiling async-fs v2.2.0
+   Compiling bevy_android v0.19.1
+   Compiling ron v0.12.2
+   Compiling async-broadcast v0.7.2
+   Compiling stackfuture v0.3.1
+   Compiling bevy_asset_macros v0.19.1
+   Compiling simd-adler32 v0.3.10
+   Compiling atomicow v1.2.0
+   Compiling bevy_asset v0.19.1
+   Compiling lazy_static v1.5.1
+   Compiling crc32fast v1.5.2
+   Compiling adler2 v2.0.1
+   Compiling aho-corasick v1.1.5
+   Compiling regex-syntax v0.8.11
+   Compiling regex-automata v0.4.18
+   Compiling miniz_oxide v0.9.1
+   Compiling flate2 v1.1.10
+   Compiling miniz_oxide v0.8.9
+   Compiling fdeflate v0.3.7
+   Compiling synstructure v0.14.0
+   Compiling const_soft_float v0.1.4
+   Compiling stable_deref_trait v1.2.1
+   Compiling pxfm v0.1.30
+   Compiling moxcms v0.8.1
+   Compiling constgebra v0.1.4
+   Compiling png v0.18.1
+   Compiling bevy_color v0.19.1
+   Compiling euclid v0.22.14
+   Compiling byteorder-lite v0.1.0
+   Compiling svg_fmt v0.4.5
+   Compiling twox-hash v2.1.5
+   Compiling ruzstd v0.8.3
+   Compiling guillotiere v0.6.2
+   Compiling image v0.25.10
+   Compiling hexasphere v18.0.0
+   Compiling zerofrom-derive v0.1.8
+   Compiling bevy_transform v0.19.1
+   Compiling bevy_encase_derive v0.19.1
+   Compiling ktx2 v0.5.0
+   Compiling bevy_mikktspace v1.0.0
+   Compiling rectangle-pack v0.4.2
+   Compiling bevy_image v0.19.1
+   Compiling bevy_mesh v0.19.1
+   Compiling zerofrom v0.1.8
+   Compiling yoke-derive v0.8.4
+   Compiling bevy_input v0.19.1
+   Compiling yoke v0.8.3
+   Compiling matchers v0.2.0
+   Compiling sharded-slab v0.1.7
+   Compiling tracing-log v0.2.0
+   Compiling nu-ansi-term v0.50.3
+   Compiling unicode-width v0.2.2
+   Compiling termcolor v1.4.1
+   Compiling tracing-subscriber v0.3.23
+   Compiling bevy_window v0.19.1
+   Compiling naga v29.0.4
+   Compiling zerovec-derive v0.11.6
+   Compiling scopeguard v1.2.0
+   Compiling bit-vec v0.9.1
+   Compiling android_log-sys v0.3.2
+   Compiling bevy_log v0.19.1
+   Compiling bit-set v0.9.1
+   Compiling zerovec v0.11.8
+   Compiling bevy_camera v0.19.1
+   Compiling codespan-reporting v0.13.1
+   Compiling spirv v0.4.0+sdk-1.4.341.0
+   Compiling displaydoc v0.2.7
+   Compiling rustc-hash v1.1.0
+   Compiling hexf-parse v0.2.1
+   Compiling libloading v0.8.9
+   Compiling writeable v0.6.4
+   Compiling tinystr v0.8.4
+   Compiling pkg-config v0.3.34
+   Compiling parking_lot_core v0.9.12
+   Compiling ash v0.38.0+1.3.281
+   Compiling litemap v0.8.3
+   Compiling icu_locale_core v2.3.0
+   Compiling wayland-sys v0.31.11
+   Compiling potential_utf v0.1.6
+   Compiling zerotrie v0.2.5
+   Compiling wgpu-naga-bridge v29.0.4
+   Compiling khronos-egl v6.0.0
+   Compiling icu_provider v2.3.1
+   Compiling dlib v0.5.3
+   Compiling lock_api v0.4.14
+   Compiling gpu-descriptor-types v0.2.0
+   Compiling wgpu-hal v29.0.4
+   Compiling ordered-float v5.5.0
+   Compiling presser v0.3.1
+   Compiling utf8_iter v1.0.4
+   Compiling icu_collections v2.3.0
+   Compiling gpu-descriptor v0.3.2
+   Compiling parking_lot v0.12.5
+   Compiling codespan-reporting v0.12.0
+   Compiling gpu-allocator v0.28.0
+   Compiling regex v1.13.1
+   Compiling font-types v0.11.3
+   Compiling android_system_properties v0.1.6
+   Compiling icu_locale_fallback_data v2.3.0
+   Compiling glow v0.17.0
+   Compiling icu_properties_data v2.3.0
+   Compiling profiling v1.0.18
+   Compiling renderdoc-sys v1.1.0
+   Compiling data-encoding v2.11.1
+   Compiling naga_oil v0.22.0
+   Compiling read-fonts v0.39.2
+   Compiling wgpu-core v29.0.4
+   Compiling memmap2 v0.9.11
+   Compiling icu_normalizer_data v2.3.0
+   Compiling litrs v1.0.0
+   Compiling icu_segmenter_data v2.3.0
+   Compiling static_assertions v1.1.0
+   Compiling document-features v0.2.12
+   Compiling wgpu-core-deps-windows-linux-android v29.0.4
+   Compiling bevy_shader v0.19.1
+   Compiling bevy_gizmos_macros v0.19.1
+   Compiling bevy_material_macros v0.19.1
+   Compiling font-types v0.12.6
+   Compiling wgpu v29.0.4
+   Compiling read-fonts v0.41.0
+   Compiling bevy_material v0.19.1
+   Compiling bevy_gizmos v0.19.1
+   Compiling icu_properties v2.3.0
+   Compiling icu_locale_fallback v2.3.0
+   Compiling core_maths v0.1.1
+   Compiling parlance v0.1.0
+   Compiling linebender_resource_handle v0.1.1
+   Compiling fontique v0.9.0
+   Compiling harfrust v0.6.2
+   Compiling icu_segmenter v2.3.0
+   Compiling icu_normalizer v2.3.0
+   Compiling parley_data v0.9.0
+   Compiling skrifa v0.44.0
+   Compiling bevy_light v0.19.1
+   Compiling skrifa v0.42.1
+   Compiling bevy_picking v0.19.1
+   Compiling offset-allocator v0.2.0
+   Compiling bevy_render_macros v0.19.1
+   Compiling zmij v1.0.23
+   Compiling weak-table v0.3.2
+   Compiling zeno v0.3.3
+   Compiling yazi v0.2.1
+   Compiling byteorder v1.5.0
+   Compiling swash v0.2.10
+   Compiling bevy_render v0.19.1
+   Compiling parley v0.9.0
+   Compiling bevy_clipboard v0.19.1
+   Compiling sys-locale v0.3.2
+   Compiling serde_json v1.0.151
+   Compiling bevy_text v0.19.1
+   Compiling accesskit v0.24.1
+   Compiling radsort v0.1.1
+   Compiling itoa v1.0.18
+   Compiling inflections v1.1.1
+   Compiling gltf-derive v1.4.1
+   Compiling bevy_sprite v0.19.1
+   Compiling gltf-json v1.4.1
+   Compiling bevy_core_pipeline v0.19.1
+   Compiling bevy_a11y v0.19.1
+   Compiling bevy_input_focus v0.19.1
+   Compiling bevy_animation_macros v0.19.1
+   Compiling winit v0.30.13
+   Compiling grid v1.0.1
+   Compiling taffy v0.10.1
+   Compiling bevy_animation v0.19.1
+   Compiling gltf v1.4.1
+   Compiling bevy_world_serialization v0.19.1
+   Compiling base64 v0.22.1
+   Compiling cursor-icon v1.2.0
+   Compiling crossbeam-epoch v0.9.21
+   Compiling dpi v0.1.2
+   Compiling percent-encoding v2.3.2
+   Compiling gilrs v0.11.2
+   Compiling bevy_gltf v0.19.1
+   Compiling bevy_sprite_render v0.19.1
+   Compiling bevy_ui v0.19.1
+   Compiling encoding_rs v0.8.42
+   Compiling gilrs-core v0.6.8
+   Compiling fnv v1.0.7
+   Compiling paste v1.0.15
+   Compiling vec_map v0.8.2
+   Compiling crossbeam-deque v0.8.8
+   Compiling accesskit_winit v0.32.2
+   Compiling bevy_pbr v0.19.1
+   Compiling oboe-sys v0.6.1
+   Compiling bevy_scene_macros v0.19.1
+   Compiling bevy_state_macros v0.19.1
+   Compiling safe_arch v0.7.4
+   Compiling num-derive v0.4.2
+   Compiling multiversion_no_op v1.0.0
+   Compiling rayon-core v1.13.0
+   Compiling heapless v0.8.0
+   Compiling bitflags v1.3.2
+   Compiling symphonia-core v0.5.5
+   Compiling wide v0.7.33
+   Compiling bevy_state v0.19.1
+   Compiling bevy_scene v0.19.1
+   Compiling bevy_gizmos_render v0.19.1
+   Compiling bevy_ui_render v0.19.1
+   Compiling bevy_ui_widgets v0.19.1
+   Compiling bevy_winit v0.19.1
+   Compiling bevy_gilrs v0.19.1
+   Compiling bevy_anti_alias v0.19.1
+   Compiling bevy_post_process v0.19.1
+   Compiling hash32 v0.3.1
+   Compiling ndk-sys v0.5.0+25.2.9519653
+   Compiling num-complex v0.4.6
+   Compiling cesu8 v1.1.0
+   Compiling jni v0.21.1
+   Compiling simba v0.9.1
+   Compiling ndk v0.8.0
+   Compiling bevy_internal v0.19.1
+   Compiling symphonia-metadata v0.5.5
+   Compiling proc-macro-error-attr3 v3.1.1
+   Compiling partition v0.1.2
+   Compiling oplon v1.0.0
+   Compiling robust v1.2.0
+   Compiling sidera v1.1.1
+   Compiling cpal v0.15.3
+   Compiling arbitrary-chunks v0.4.1
+   Compiling rdst v0.20.14
+   Compiling spade v2.15.1
+   Compiling xmrs v0.15.2
+   Compiling proc-macro-error3 v3.1.1
+   Compiling symphonia-bundle-mp3 v0.5.5
+   Compiling oboe v0.6.1
+   Compiling rayon v1.12.0
+   Compiling glamx v0.2.0
+   Compiling bevy v0.19.1
+   Compiling rstar v0.12.2
+   Compiling glam_matrix_extras v0.3.0
+   Compiling ena v0.14.4
+   Compiling dasp_sample v0.11.0
+   Compiling parry3d v0.27.0
+   Compiling bevy_heavy v0.5.0
+   Compiling bevy_transform_interpolation v0.5.0
+   Compiling xmrsplayer v0.15.0
+   Compiling symphonia v0.5.5
+   Compiling avian_derive v0.2.3
+   Compiling obvhs v0.3.3
+   Compiling unreal-pkg v0.1.0 (/home/runner/work/dx-rust/dx-rust/crates/unreal-pkg)
+   Compiling itertools v0.15.0
+   Compiling bcdec_rs v0.2.1
+   Compiling dxview v0.1.0 (/home/runner/work/dx-rust/dx-rust/crates/dxview)
+   Compiling dx-level v0.1.0 (/home/runner/work/dx-rust/dx-rust/crates/dx-level)
+warning: value assigned to `err` is never read
+  --> crates/dx-level/src/etc2.rs:56:52
+   |
+56 |             let mut ids = [0u8; 16]; let mut err = 0u64; let mut tables = [0usize; 2];
+   |                                                    ^^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: value assigned to `err` is never read
+  --> crates/dx-level/src/etc2.rs:70:42
+   |
+70 |                     ids[y * 4 + x] = pi; err += pe; n += 1;
+   |                                          ^^^^^^^^^
+   |
+   = help: maybe it is overwritten before being read?
+
+   Compiling avian3d v0.7.0
+   Compiling imsim-audio v0.1.0 (/home/runner/work/dx-rust/dx-rust/crates/imsim-audio)
+   Compiling imsim-core v0.1.0 (/home/runner/work/dx-rust/dx-rust/crates/imsim-core)
+warning: `dx-level` (lib) generated 2 warnings
+warning: unused import: `bevy::prelude::*`
+ --> crates/dxview/src/winicon.rs:6:5
+  |
+6 | use bevy::prelude::*;
+  |     ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused imports: `PrimaryWindow` and `RawHandleWrapper`
+ --> crates/dxview/src/winicon.rs:7:20
+  |
+7 | use bevy::window::{PrimaryWindow, RawHandleWrapper};
+  |                    ^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
+
+warning: unused import: `bevy::render::RenderPlugin`
+ --> crates/dxview/src/mobile.rs:7:5
+  |
+7 | use bevy::render::RenderPlugin;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: `match` arms have incompatible types
+   --> crates/dxview/src/touch.rs:108:14
+    |
+103 | /     match a {
+104 | |         "Fire / throw" => "FIRE", "Scope" => "AIM", "Jump / swim up" => "JUMP", "Crouch / swim down" => "DUCK",
+105 | |         "Use / pick up" => "USE", "Reload" => "RLD", "Inventory screen" => "INV", "Goals / notes screen" => "GOALS",
+106 | |         "Menu" => "MENU", "Edit controls" => "EDIT", "Augmentation F12 (light)" => "LIGHT",
+107 | |         s if s.starts_with("Augmentation ") => s.trim_start_matches("Augmentation ").split(' ').next().unwrap_or("AUG"),
+    | |                                                ------------------------------------------------------------------------ this and all prior arms are found to be of type `&str`
+108 | |         s => s.split(' ').next().unwrap_or("ACT").to_uppercase(),
+    | |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&str`, found `String`
+109 | |     }.to_string()
+    | |_____- `match` arms have incompatible types
+    |
+help: try removing the method call
+    |
+108 -         s => s.split(' ').next().unwrap_or("ACT").to_uppercase(),
+108 +         s => s.split(' ').next().unwrap_or("ACT"),
+    |
+
+error[E0308]: mismatched types
+   --> crates/dxview/src/lib.rs:567:97
+    |
+567 |       let root = crate::platform::android_game_root().map(|p| p.display().to_string()).or_else(|| args
+    |  _________________________________________________________________________________________________^
+568 | |         .get(1)
+569 | |         .filter(|a| !a.starts_with("--"))
+570 | |         .cloned()
+...   |
+580 | |         .or_else(|| unreal_pkg::gamedir::detect().map(|p| p.display().to_string()))
+581 | |         .unwrap_or_else(|| r"C:\Games\Deus Ex".to_string()));
+    | |___________________________________________________________^ expected `Option<String>`, found `String`
+    |
+    = note: expected enum `std::option::Option<std::string::String>`
+             found struct `std::string::String`
+help: try wrapping the expression in `Some`
+    |
+567 ~     let root = crate::platform::android_game_root().map(|p| p.display().to_string()).or_else(|| Some(args
+568 |         .get(1)
+...
+580 |         .or_else(|| unreal_pkg::gamedir::detect().map(|p| p.display().to_string()))
+581 ~         .unwrap_or_else(|| r"C:\Games\Deus Ex".to_string())));
+    |
+
+error[E0277]: the trait bound `std::option::Option<std::string::String>: AsRef<OsStr>` is not satisfied
+   --> crates/dxview/src/lib.rs:613:59
+    |
+613 |             if let Some(p) = unreal_pkg::mods::locate(m, &PathBuf::from(&root).join("Textures")) {
+    |                                                           ^^^^^^^ the trait `AsRef<OsStr>` is not implemented for `std::option::Option<std::string::String>`
+    |
+    = help: the following other types implement trait `From<T>`:
+              `PathBuf` implements `From<&T>`
+              `PathBuf` implements `From<Cow<'_, std::path::Path>>`
+              `PathBuf` implements `From<OsString>`
+              `PathBuf` implements `From<bevy::bevy_asset::AssetPath<'_>>`
+              `PathBuf` implements `From<std::boxed::Box<std::path::Path>>`
+              `PathBuf` implements `From<std::string::String>`
+    = note: required for `PathBuf` to implement `From<&std::option::Option<std::string::String>>`
+
+error[E0277]: the trait bound `std::option::Option<std::string::String>: AsRef<OsStr>` is not satisfied
+   --> crates/dxview/src/lib.rs:621:29
+    |
+621 |     unreal_pkg::paths::set(&PathBuf::from(&root), mods);
+    |                             ^^^^^^^ the trait `AsRef<OsStr>` is not implemented for `std::option::Option<std::string::String>`
+    |
+    = help: the following other types implement trait `From<T>`:
+              `PathBuf` implements `From<&T>`
+              `PathBuf` implements `From<Cow<'_, std::path::Path>>`
+              `PathBuf` implements `From<OsString>`
+              `PathBuf` implements `From<bevy::bevy_asset::AssetPath<'_>>`
+              `PathBuf` implements `From<std::boxed::Box<std::path::Path>>`
+              `PathBuf` implements `From<std::string::String>`
+    = note: required for `PathBuf` to implement `From<&std::option::Option<std::string::String>>`
+
+error[E0277]: the trait bound `std::option::Option<std::string::String>: AsRef<OsStr>` is not satisfied
+   --> crates/dxview/src/lib.rs:632:19
+    |
+632 |         let tex = PathBuf::from(&root).join("Textures");
+    |                   ^^^^^^^ the trait `AsRef<OsStr>` is not implemented for `std::option::Option<std::string::String>`
+    |
+    = help: the following other types implement trait `From<T>`:
+              `PathBuf` implements `From<&T>`
+              `PathBuf` implements `From<Cow<'_, std::path::Path>>`
+              `PathBuf` implements `From<OsString>`
+              `PathBuf` implements `From<bevy::bevy_asset::AssetPath<'_>>`
+              `PathBuf` implements `From<std::boxed::Box<std::path::Path>>`
+              `PathBuf` implements `From<std::string::String>`
+    = note: required for `PathBuf` to implement `From<&std::option::Option<std::string::String>>`
+
+error[E0277]: the trait bound `std::option::Option<std::string::String>: AsRef<OsStr>` is not satisfied
+   --> crates/dxview/src/lib.rs:644:17
+    |
+644 |     hdtp::init(&PathBuf::from(&root));
+    |                 ^^^^^^^ the trait `AsRef<OsStr>` is not implemented for `std::option::Option<std::string::String>`
+    |
+    = help: the following other types implement trait `From<T>`:
+              `PathBuf` implements `From<&T>`
+              `PathBuf` implements `From<Cow<'_, std::path::Path>>`
+              `PathBuf` implements `From<OsString>`
+              `PathBuf` implements `From<bevy::bevy_asset::AssetPath<'_>>`
+              `PathBuf` implements `From<std::boxed::Box<std::path::Path>>`
+              `PathBuf` implements `From<std::string::String>`
+    = note: required for `PathBuf` to implement `From<&std::option::Option<std::string::String>>`
+
+error[E0277]: the trait bound `std::option::Option<std::string::String>: AsRef<OsStr>` is not satisfied
+   --> crates/dxview/src/lib.rs:646:24
+    |
+646 |     augmentique::init(&PathBuf::from(&root));
+    |                        ^^^^^^^ the trait `AsRef<OsStr>` is not implemented for `std::option::Option<std::string::String>`
+    |
+    = help: the following other types implement trait `From<T>`:
+              `PathBuf` implements `From<&T>`
+              `PathBuf` implements `From<Cow<'_, std::path::Path>>`
+              `PathBuf` implements `From<OsString>`
+              `PathBuf` implements `From<bevy::bevy_asset::AssetPath<'_>>`
+              `PathBuf` implements `From<std::boxed::Box<std::path::Path>>`
+              `PathBuf` implements `From<std::string::String>`
+    = note: required for `PathBuf` to implement `From<&std::option::Option<std::string::String>>`
+
+error[E0277]: the trait bound `std::option::Option<std::string::String>: AsRef<OsStr>` is not satisfied
+   --> crates/dxview/src/lib.rs:647:18
+    |
+647 |     perks::init(&PathBuf::from(&root));
+    |                  ^^^^^^^ the trait `AsRef<OsStr>` is not implemented for `std::option::Option<std::string::String>`
+    |
+    = help: the following other types implement trait `From<T>`:
+              `PathBuf` implements `From<&T>`
+              `PathBuf` implements `From<Cow<'_, std::path::Path>>`
+              `PathBuf` implements `From<OsString>`
+              `PathBuf` implements `From<bevy::bevy_asset::AssetPath<'_>>`
+              `PathBuf` implements `From<std::boxed::Box<std::path::Path>>`
+              `PathBuf` implements `From<std::string::String>`
+    = note: required for `PathBuf` to implement `From<&std::option::Option<std::string::String>>`
+
+error[E0277]: the trait bound `std::option::Option<std::string::String>: AsRef<OsStr>` is not satisfied
+   --> crates/dxview/src/lib.rs:648:69
+    |
+648 |     visattach::build_layer(&mut unreal_pkg::classes::ClassDb::open(&PathBuf::from(&root).join("System")));
+    |                                                                     ^^^^^^^ the trait `AsRef<OsStr>` is not implemented for `std::option::Option<std::string::String>`
+    |
+    = help: the following other types implement trait `From<T>`:
+              `PathBuf` implements `From<&T>`
+              `PathBuf` implements `From<Cow<'_, std::path::Path>>`
+              `PathBuf` implements `From<OsString>`
+              `PathBuf` implements `From<bevy::bevy_asset::AssetPath<'_>>`
+              `PathBuf` implements `From<std::boxed::Box<std::path::Path>>`
+              `PathBuf` implements `From<std::string::String>`
+    = note: required for `PathBuf` to implement `From<&std::option::Option<std::string::String>>`
+
+error[E0277]: `std::option::Option<std::string::String>` doesn't implement `std::fmt::Display`
+   --> crates/dxview/src/lib.rs:666:42
+    |
+666 |     println!("dxview: loading {map} from {root} ...");
+    |                                          ^^^^^^ `std::option::Option<std::string::String>` cannot be formatted with the default formatter
+    |
+    = help: the trait `std::fmt::Display` is not implemented for `std::option::Option<std::string::String>`
+    = note: in format strings you may be able to use `{:?}` (or {:#?} for pretty-print) instead
+
+error[E0277]: the trait bound `std::option::Option<std::string::String>: AsRef<OsStr>` is not satisfied
+   --> crates/dxview/src/lib.rs:668:45
+    |
+668 |     let level = match dx_level::load_level(&PathBuf::from(&root), &map) {
+    |                                             ^^^^^^^ the trait `AsRef<OsStr>` is not implemented for `std::option::Option<std::string::String>`
+    |
+    = help: the following other types implement trait `From<T>`:
+              `PathBuf` implements `From<&T>`
+              `PathBuf` implements `From<Cow<'_, std::path::Path>>`
+              `PathBuf` implements `From<OsString>`
+              `PathBuf` implements `From<bevy::bevy_asset::AssetPath<'_>>`
+              `PathBuf` implements `From<std::boxed::Box<std::path::Path>>`
+              `PathBuf` implements `From<std::string::String>`
+    = note: required for `PathBuf` to implement `From<&std::option::Option<std::string::String>>`
+
+error[E0277]: the trait bound `std::option::Option<std::string::String>: AsRef<OsStr>` is not satisfied
+   --> crates/dxview/src/lib.rs:712:61
+    |
+712 |         .insert_resource(make_player(&level, player_params(&PathBuf::from(&root))))
+    |                                                             ^^^^^^^ the trait `AsRef<OsStr>` is not implemented for `std::option::Option<std::string::String>`
+    |
+    = help: the following other types implement trait `From<T>`:
+              `PathBuf` implements `From<&T>`
+              `PathBuf` implements `From<Cow<'_, std::path::Path>>`
+              `PathBuf` implements `From<OsString>`
+              `PathBuf` implements `From<bevy::bevy_asset::AssetPath<'_>>`
+              `PathBuf` implements `From<std::boxed::Box<std::path::Path>>`
+              `PathBuf` implements `From<std::string::String>`
+    = note: required for `PathBuf` to implement `From<&std::option::Option<std::string::String>>`
+
+error[E0277]: the trait bound `std::option::Option<std::string::String>: AsRef<OsStr>` is not satisfied
+   --> crates/dxview/src/lib.rs:713:44
+    |
+713 |         .insert_resource(pickups::GameRoot(PathBuf::from(&root)))
+    |                                            ^^^^^^^ the trait `AsRef<OsStr>` is not implemented for `std::option::Option<std::string::String>`
+    |
+    = help: the following other types implement trait `From<T>`:
+              `PathBuf` implements `From<&T>`
+              `PathBuf` implements `From<Cow<'_, std::path::Path>>`
+              `PathBuf` implements `From<OsString>`
+              `PathBuf` implements `From<bevy::bevy_asset::AssetPath<'_>>`
+              `PathBuf` implements `From<std::boxed::Box<std::path::Path>>`
+              `PathBuf` implements `From<std::string::String>`
+    = note: required for `PathBuf` to implement `From<&std::option::Option<std::string::String>>`
+
+warning: unused variable: `to_logical`
+   --> crates/dxview/src/classic_hud.rs:611:9
+    |
+611 |     let to_logical = |v: i32| v as f32 * s as f32 / window.scale_factor();
+    |         ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_to_logical`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `g`
+    --> crates/dxview/src/save.rs:1015:9
+     |
+1015 |     let g = &s.global;
+     |         ^ help: if this is intentional, prefix it with an underscore: `_g`
+
+warning: unused variable: `e`
+    --> crates/dxview/src/menus.rs:1345:9
+     |
+1345 |     let e = |key: &str, label: &str, help: &str, values: &[&str]| {
+     |         ^ help: if this is intentional, prefix it with an underscore: `_e`
+
+warning: unused variable: `hud`
+    --> crates/dxview/src/menus.rs:3328:54
+     |
+3328 | fn box_answer(st: &mut Menus, top: usize, yes: bool, hud: &mut ClassicHud, assets: &mut RuntimeAssets, acts: &mut Vec<Act>) {
+     |                                                      ^^^ help: if this is intentional, prefix it with an underscore: `_hud`
+
+warning: unused variable: `assets`
+    --> crates/dxview/src/menus.rs:3328:76
+     |
+3328 | fn box_answer(st: &mut Menus, top: usize, yes: bool, hud: &mut ClassicHud, assets: &mut RuntimeAssets, acts: &mut Vec<Act>) {
+     |                                                                            ^^^^^^ help: if this is intentional, prefix it with an underscore: `_assets`
+
+warning: variable does not need to be mutable
+   --> crates/dxview/src/effects.rs:532:9
+    |
+532 |     let mut spawn_particle = |commands: &mut Commands,
+    |         ----^^^^^^^^^^^^^^
+    |         |
+    |         help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+   --> crates/dxview/src/impacts.rs:266:9
+    |
+266 |     let mut spark_at = |commands: &mut Commands,
+    |         ----^^^^^^^^
+    |         |
+    |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+    --> crates/dxview/src/persona.rs:3118:13
+     |
+3118 |         let mut delete_sel = |chars: &mut Vec<char>, ed: &mut NoteEdit| -> bool {
+     |             ----^^^^^^^^^^
+     |             |
+     |             help: remove this `mut`
+
+warning: variable does not need to be mutable
+   --> crates/dxview/src/pickups.rs:222:61
+    |
+222 |     (blockers, mut hacking, mut events, mut info, root_dir, mut ph): (
+    |                                                             ----^^
+    |                                                             |
+    |                                                             help: remove this `mut`
+
+warning: unused variable: `ph`
+   --> crates/dxview/src/pickups.rs:222:61
+    |
+222 |     (blockers, mut hacking, mut events, mut info, root_dir, mut ph): (
+    |                                                             ^^^^^^ help: if this is intentional, prefix it with an underscore: `_ph`
+
+warning: variable does not need to be mutable
+   --> crates/dxview/src/sound.rs:749:9
+    |
+749 |     let mut fx = |occl: &mut crate::audiofx::Occluder, pos: Option<DVec3>, talk: bool| -> (f32, f32, f32) {
+    |         ----^^
+    |         |
+    |         help: remove this `mut`
+
+warning: unused variable: `rig`
+   --> crates/dxview/src/skeletal.rs:553:13
+    |
+553 |         let rig = &rigs()[body.female as usize];
+    |             ^^^ help: if this is intentional, prefix it with an underscore: `_rig`
+
+warning: variable does not need to be mutable
+    --> crates/dxview/src/skeletal.rs:1078:9
+     |
+1078 |     let mut set = |name: &str, v: f32, w: &mut [f32]| {
+     |         ----^^^
+     |         |
+     |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+    --> crates/dxview/src/skeletal.rs:1459:9
+     |
+1459 |     let mut blend = |bones: &[&str], w: f32, pose: &mut Vec<Trs>| {
+     |         ----^^^^^
+     |         |
+     |         help: remove this `mut`
+
+error[E0502]: cannot borrow `state` as mutable because it is also borrowed as immutable
+   --> crates/dxview/src/touch.rs:247:17
+    |
+244 |     for t in state.fingers.values() {
+    |              ----------------------
+    |              |
+    |              immutable borrow occurs here
+    |              immutable borrow later used here
+...
+247 |                 state.pressed.push(id);
+    |                 ^^^^^ mutable borrow occurs here
+
+error[E0502]: cannot borrow `state` as mutable because it is also borrowed as immutable
+   --> crates/dxview/src/touch.rs:249:90
+    |
+244 |     for t in state.fingers.values() {
+    |              ----------------------
+    |              |
+    |              immutable borrow occurs here
+    |              immutable borrow later used here
+...
+249 |                     if let Some(inp) = action_input(&b.action, &binds) { push_input(&mut state.frame, inp); }
+    |                                                                                          ^^^^^ mutable borrow occurs here
+
+error[E0502]: cannot borrow `state` as mutable because it is also borrowed as immutable
+   --> crates/dxview/src/touch.rs:254:33
+    |
+244 |     for t in state.fingers.values() {
+    |              ----------------------
+    |              |
+    |              immutable borrow occurs here
+    |              immutable borrow later used here
+...
+254 |                 if a.y > 0.25 { state.frame.keys.push(KeyCode::KeyW); } if a.y < -0.25 { state.frame.keys.push(KeyCode::KeyS); }
+    |                                 ^^^^^ mutable borrow occurs here
+
+error[E0502]: cannot borrow `state` as mutable because it is also borrowed as immutable
+   --> crates/dxview/src/touch.rs:254:90
+    |
+244 |     for t in state.fingers.values() {
+    |              ----------------------
+    |              |
+    |              immutable borrow occurs here
+    |              immutable borrow later used here
+...
+254 |                 if a.y > 0.25 { state.frame.keys.push(KeyCode::KeyW); } if a.y < -0.25 { state.frame.keys.push(KeyCode::KeyS); }
+    |                                                                                          ^^^^^ mutable borrow occurs here
+
+error[E0502]: cannot borrow `state` as mutable because it is also borrowed as immutable
+   --> crates/dxview/src/touch.rs:255:33
+    |
+244 |     for t in state.fingers.values() {
+    |              ----------------------
+    |              |
+    |              immutable borrow occurs here
+    |              immutable borrow later used here
+...
+255 |                 if a.x > 0.25 { state.frame.keys.push(KeyCode::KeyD); } if a.x < -0.25 { state.frame.keys.push(KeyCode::KeyA); }
+    |                                 ^^^^^ mutable borrow occurs here
+
+error[E0502]: cannot borrow `state` as mutable because it is also borrowed as immutable
+   --> crates/dxview/src/touch.rs:255:90
+    |
+244 |     for t in state.fingers.values() {
+    |              ----------------------
+    |              |
+    |              immutable borrow occurs here
+    |              immutable borrow later used here
+...
+255 |                 if a.x > 0.25 { state.frame.keys.push(KeyCode::KeyD); } if a.x < -0.25 { state.frame.keys.push(KeyCode::KeyA); }
+    |                                                                                          ^^^^^ mutable borrow occurs here
+
+error[E0502]: cannot borrow `state` as mutable because it is also borrowed as immutable
+   --> crates/dxview/src/touch.rs:256:61
+    |
+244 |     for t in state.fingers.values() {
+    |              ----------------------
+    |              |
+    |              immutable borrow occurs here
+    |              immutable borrow later used here
+...
+256 |                 if a.length() > 0.05 && a.length() < 0.72 { state.frame.keys.push(KeyCode::ShiftLeft); }
+    |                                                             ^^^^^ mutable borrow occurs here
+
+error[E0502]: cannot borrow `state` as mutable because it is also borrowed as immutable
+   --> crates/dxview/src/touch.rs:258:28
+    |
+244 |     for t in state.fingers.values() {
+    |              ----------------------
+    |              |
+    |              immutable borrow occurs here
+    |              immutable borrow later used here
+...
+258 |             Owner::Ui => { state.pointer = Some(t.last); }
+    |                            ^^^^^ mutable borrow occurs here
+
+warning: variable does not need to be mutable
+   --> crates/dxview/src/touch.rs:277:5
+    |
+277 |     mut visuals: ResMut<Visuals>,
+    |     ----^^^^^^^
+    |     |
+    |     help: remove this `mut`
+
+Some errors have detailed explanations: E0277, E0308, E0502.
+For more information about an error, try `rustc --explain E0277`.
+warning: `dxview` (lib) generated 18 warnings
+error: could not compile `dxview` (lib) due to 21 previous errors; 18 warnings emitted
+note: If the build failed due to a missing target, you can run this command:
+note: 
+note:     rustup target install aarch64-linux-android
