@@ -91,6 +91,11 @@ jobs:
             grep -E '^error|error\[|FAILURE:|What went wrong|Caused by:|FAILED|panicked|assertion|PSNR' "$f" | head -80 | while IFS= read -r line; do
               echo "::error file=$f::$line"
             done
+            if [ "$f" = "rust-build.log" ]; then
+              grep -n -B2 -A8 'error\[' "$f" | head -200 | while IFS= read -r line; do
+                echo "::error file=$f::$line"
+              done
+            fi
           done
 
       - uses: actions/upload-artifact@v4

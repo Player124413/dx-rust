@@ -19,6 +19,7 @@ imsim-core = { path = "../imsim-core" }
 unreal-pkg = { path = "../unreal-pkg" }
 imsim-audio = { path = "../imsim-audio" }
 glam = "0.32"
+bevy_ecs = "0.19.1"
 serde = { version = "1", features = ["derive"] }
 ron = "0.12"
 half = "2.7"
