@@ -14,12 +14,12 @@ name = "dxview"
 path = "src/bin/dxview.rs"
 
 [dependencies]
+bevy = { version = "0.19.1", default-features = false, features = ["3d", "ui", "experimental_pbr_pcss", "android-game-activity"] }
 dx-level = { path = "../dx-level" }
 imsim-core = { path = "../imsim-core" }
 unreal-pkg = { path = "../unreal-pkg" }
 imsim-audio = { path = "../imsim-audio" }
 glam = "0.32"
-bevy_ecs = "0.19.1"
 serde = { version = "1", features = ["derive"] }
 ron = "0.12"
 half = "2.7"
@@ -36,11 +36,6 @@ hidapi = { version = "2.6", default-features = false, features = ["linux-static-
 ndk = "0.9"
 # Enable the native Android GLES backend in the same wgpu build Bevy uses; Vulkan remains preferred.
 wgpu = { version = "29.0.3", default-features = false, features = ["gles"] }
-
-[target.'cfg(not(target_os = "android"))'.dependencies.bevy]
-version = "0.19.1"
-default-features = false
-features = ["3d", "ui", "experimental_pbr_pcss"]
 
 [target.'cfg(target_os = "android")'.dependencies.bevy]
 version = "0.19.1"
