@@ -83,6 +83,18 @@ jobs:
           set -o pipefail
           gradle -p android assembleRelease --no-daemon --stacktrace 2>&1 | tee gradle-build.log
 
+      - name: Persist failure logs for debugging
+        if: failure()
+        run: |
+          mkdir -p ci-logs
+          for f in lock.log etc2-test.log rust-build.log gradle-build.log; do [ -f "$f" ] && cp "$f" ci-logs/ || true; done
+          if [ -n "$(git status --porcelain ci-logs)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add ci-logs
+            git commit -m "CI failure logs [skip ci]"
+            git push origin HEAD:arena/c6e3e0a1-dx-rust
+          fi
       - name: Surface build errors in annotations
         if: failure()
         run: |
